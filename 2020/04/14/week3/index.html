@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>week3 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="misc三重隐写题目已经提示了3重隐写首先可以看到一个文件名字是You know LSB,用silenteye得到key  uFSARLVNwVIewCY5  然后用mp3stego decode 解压发现里面的文件还decrypt最后一个音频文件是一个二维码，扫码得到key解密得到flag  hgame{i35k#zIewynLC0zfQur!*H9V$JiMVWmL}  reoooollvm考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="week3">
+<meta property="og:url" content="http://yoursite.com/2020/04/14/week3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="misc三重隐写题目已经提示了3重隐写首先可以看到一个文件名字是You know LSB,用silenteye得到key  uFSARLVNwVIewCY5  然后用mp3stego decode 解压发现里面的文件还decrypt最后一个音频文件是一个二维码，扫码得到key解密得到flag  hgame{i35k#zIewynLC0zfQur!*H9V$JiMVWmL}  reoooollvm考">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://img.r3n0.top/week3-1.png">
+<meta property="og:image" content="http://img.r3n0.top/week3-2.png">
+<meta property="article:published_time" content="2020-04-14T14:48:53.000Z">
+<meta property="article:modified_time" content="2020-05-04T12:55:54.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.r3n0.top/week3-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-week3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/14/week3/" class="article-date">
+  <time datetime="2020-04-14T14:48:53.000Z" itemprop="datePublished">2020-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      week3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="三重隐写"><a href="#三重隐写" class="headerlink" title="三重隐写"></a>三重隐写</h2><p>题目已经提示了3重隐写<br>首先可以看到一个文件名字是You know LSB,用silenteye得到key</p>
+<blockquote>
+<p>uFSARLVNwVIewCY5</p>
+</blockquote>
+<p>然后用mp3stego decode<br><img src="http://img.r3n0.top/week3-1.png" alt=""></p>
+<p><img src="http://img.r3n0.top/week3-2.png" alt=""><br>解压发现里面的文件还decrypt<br>最后一个音频文件是一个二维码，扫码得到key<br>解密得到flag</p>
+<blockquote>
+<p>hgame{i35k#zIewynLC0zfQur!*H9V$JiMVWmL}</p>
+</blockquote>
+<h1 id="re"><a href="#re" class="headerlink" title="re"></a>re</h1><h2 id="oooollvm"><a href="#oooollvm" class="headerlink" title="oooollvm"></a>oooollvm</h2><p>考的是llvm的流程平坦化，网上有去平坦化的脚本，但不知道咋回事脚本运行的时候总是报错，只好硬着头皮看了。<br>看了很久发现了规律，大致就是if + break组成了多重while里面的判断，如果是false就跳出一层循环，最后来到switch语句。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( (((y &lt; <span class="number">10</span>) ^ (((x - <span class="number">1</span>) * x &amp; <span class="number">1</span>) == <span class="number">0</span>)) | (y &lt; <span class="number">10</span> &amp;&amp; ((x - <span class="number">1</span>) * x &amp; <span class="number">1</span>) == <span class="number">0</span>)) &amp; <span class="number">1</span> )``</span><br></pre></td></tr></table></figure>
+<p>其中这里纠结了很久，x和y既没有定义也没有赋值，然后双击看了看，发现这两个变量都在bss里面，就盲猜两个的值都是0<br>最后发现主要这个判断是false，对应输入的字符就是正确的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( table2[v15] != (~s[v15] &amp; (v15 + table1[v15]) | ~(v15 + table1[v15]) &amp; s[v15]) )</span><br></pre></td></tr></table></figure>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">table1 = [<span class="number">0x9c</span>, <span class="number">0x70</span>, <span class="number">0x43</span>, <span class="number">0x0bc</span>, <span class="number">0x3d</span>, <span class="number">0x8b</span>, <span class="number">0x6d</span>, <span class="number">0x15</span>, <span class="number">0x26</span>, <span class="number">0x9c</span>, <span class="number">0xb8</span>, <span class="number">0x43</span>, <span class="number">0x48</span>, <span class="number">0xb4</span>, <span class="number">0x6f</span>, <span class="number">0xa1</span>, <span class="number">0xb1</span>, <span class="number">0x5b</span>, <span class="number">0xb5</span>, </span><br><span class="line"><span class="number">0x6</span>, <span class="number">0x4b</span>, <span class="number">0x15</span>, <span class="number">0x84</span>, <span class="number">0x70</span>, <span class="number">0x2d</span>, <span class="number">0x55</span>, <span class="number">0x56</span>, <span class="number">0xc1</span>, <span class="number">0x1a</span>, <span class="number">0xc7</span>, <span class="number">0x58</span>, <span class="number">0x8f</span>, <span class="number">0x70</span>, <span class="number">0x70</span>]</span><br><span class="line">table1 += [<span class="number">0</span>] * <span class="number">14</span></span><br><span class="line"></span><br><span class="line">table2 = [<span class="number">0xf4</span>, <span class="number">0x16</span>, <span class="number">0x24</span>, <span class="number">0xd2</span>, <span class="number">0x24</span>, <span class="number">0xeb</span>, <span class="number">0x43</span>, <span class="number">0x50</span>, <span class="number">0x62</span>, <span class="number">0xf3</span>, <span class="number">0x8f</span>, <span class="number">0x11</span>, <span class="number">0x65</span>, <span class="number">0x92</span>, <span class="number">0x50</span>, <span class="number">0xd3</span>, <span class="number">0xf1</span>, <span class="number">0x1</span>, <span class="number">0xb7</span>, <span class="number">0x55</span>,</span><br><span class="line"><span class="number">0x1a</span>, <span class="number">0x72</span>, <span class="number">0xb7</span>, <span class="number">0xc5</span>, <span class="number">0x30</span>, <span class="number">0x1a</span>, <span class="number">0x0e</span>, <span class="number">0xe9</span>, <span class="number">0x17</span>, <span class="number">0x89</span>, <span class="number">0x6</span>, <span class="number">0xe2</span>, <span class="number">0xf5</span>, <span class="number">0xec</span>]</span><br><span class="line"></span><br><span class="line">s = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> v15 <span class="keyword">in</span> range(len(table2)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">33</span>, <span class="number">128</span>):</span><br><span class="line">        a = table2[v15] != (~j &amp; (v15 + table1[v15]) | ~(v15 + table1[v15]) &amp; j)</span><br><span class="line">        <span class="keyword">if</span> a == <span class="literal">False</span>:</span><br><span class="line">            s += chr(j)</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>hgame{0LLVM_1S-c0mpLEX-But~5!mpLe}</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/14/week3/" data-id="ckclxnlx2000038zqfypk3y84" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/14/week2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          week2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/14/week4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">week4</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/%E7%AC%AC%E4%B8%80%E4%B8%AAwindows%E9%A9%B1%E5%8A%A8/">第一个windows驱动</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/week1/">week1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/week2/">week2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/week3/">week3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/week4/">week4</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
