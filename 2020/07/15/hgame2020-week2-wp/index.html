@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="hgame," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="web本来打算往web方向做，但是，这周的web题我一题都没做出来。。。 pwn别问，问就是菜 rebabypyc这里的pyc不能直接用uncompyle6等工具反编译，但可以用marshal读取字节码。一开始不会用marshal，感谢Lurkrul大佬。根据字节码写出来源码大概长这样 12345678910111213141516171819202122O0o &#x3D; &#39;&#x2F;KDq6pvN&#x2F;LLq6t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hgame2020 week2 wp">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/hgame2020-week2-wp/index.html">
+<meta property="og:site_name" content="R3n0&#39;Blog">
+<meta property="og:description" content="web本来打算往web方向做，但是，这周的web题我一题都没做出来。。。 pwn别问，问就是菜 rebabypyc这里的pyc不能直接用uncompyle6等工具反编译，但可以用marshal读取字节码。一开始不会用marshal，感谢Lurkrul大佬。根据字节码写出来源码大概长这样 12345678910111213141516171819202122O0o &#x3D; &#39;&#x2F;KDq6pvN&#x2F;LLq6t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-1.png">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-2.png">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-3.png">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-4.png">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-5.png">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-6.png">
+<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-7.png">
+<meta property="article:published_time" content="2020-07-15T02:36:53.000Z">
+<meta property="article:modified_time" content="2020-07-15T03:28:05.225Z">
+<meta property="article:author" content="R3n0">
+<meta property="article:tag" content="hgame">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r3n0.top/wp-content/uploads/2020/04/week2-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/15/hgame2020-week2-wp/"/>
+
+
+
+
+
+  <title>hgame2020 week2 wp | R3n0'Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">R3n0'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/hgame2020-week2-wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="R3n0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="R3n0'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hgame2020 week2 wp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-15T10:36:53+08:00">
+                2020-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><p>本来打算往web方向做，但是，这周的web题我一题都没做出来。。。</p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><p>别问，问就是菜</p>
+<h1 id="re"><a href="#re" class="headerlink" title="re"></a>re</h1><h2 id="babypyc"><a href="#babypyc" class="headerlink" title="babypyc"></a>babypyc</h2><p>这里的pyc不能直接用uncompyle6等工具反编译，但可以用marshal读取字节码。一开始不会用marshal，感谢Lurkrul大佬。<br>根据字节码写出来源码大概长这样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">O0o = <span class="string">'/KDq6pvN/LLq6tzM/KXq59Oh/MTqxtOTxdrqs8OoR3V1X09J'</span></span><br><span class="line">O0o = <span class="string">b'QreZoJSeWr2ioJN4cXhvvNO8f4mfqKDtrrftpI/JZ1JvRV9Q'</span></span><br><span class="line">flag = getflag()</span><br><span class="line"></span><br><span class="line">raw_flag = flag[<span class="number">6</span>:<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">if</span> len(flag) <span class="number">-7</span> != <span class="number">36</span>:</span><br><span class="line">    print(<span class="string">'Wrong length'</span>)</span><br><span class="line"><span class="keyword">else</span>:   </span><br><span class="line">    raw_flag = raw_flag[::<span class="number">-1</span>]</span><br><span class="line">    ciphers = [[raw_flag[<span class="number">6</span>*row+col] <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">6</span>)] <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">6</span>)]<span class="comment">#第6，12。。   7，14.。。。 8，16.。。</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">                ciphers[row][col] += ciphers[row+<span class="number">1</span>][col]</span><br><span class="line">                ciphers[row][col] %= <span class="number">256</span></span><br><span class="line">    cipher = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">        col = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> col &lt; <span class="number">6</span>:</span><br><span class="line">            cipher += bytes([ciphers[row][col]])</span><br><span class="line">            col += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">b64encode(cipher)</span><br></pre></td></tr></table></figure>
+
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">O0o = <span class="string">b'QreZoJSeWr2ioJN4cXhvvNO8f4mfqKDtrrftpI/JZ1JvRV9Q'</span></span><br><span class="line">a = base64.b64decode(O0o)</span><br><span class="line">x = [[a[i + <span class="number">6</span> *j] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">6</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">6</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">        x[<span class="number">5</span> - i][j] = x[<span class="number">5</span> - i][j] - x[<span class="number">6</span> - i][j]</span><br><span class="line">        <span class="keyword">if</span> x[<span class="number">5</span> - i][j] &lt; <span class="number">0</span>:</span><br><span class="line">            x[<span class="number">5</span> - i][j] += <span class="number">256</span></span><br><span class="line">s = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">        s.append(x[j][i])</span><br><span class="line"></span><br><span class="line">s = bytes(s).decode()</span><br><span class="line">print(<span class="string">'hgame&#123;'</span> + s[::<span class="number">-1</span>] + <span class="string">'&#125;'</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hgame{PytH0n_0pc0dE_Is-so~!NTERe$TiNgG89!!}</p>
+</blockquote>
+<h2 id="crackme"><a href="#crackme" class="headerlink" title="crackme"></a>crackme</h2><p>好像是用c#写的东西，用jetbrains的dotpeek反编译。发现是关于aes加密的<br>主要就是CBC模式的特点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">r = AES.new(base64.b64decode(<span class="string">'SGc0bTNfMm8yMF9XZWVLMg=='</span>), AES.MODE_CBC, base64.b64decode(<span class="string">'MFB1T2g5SWxYMDU0SWN0cw=='</span>))</span><br><span class="line">t = AES.new(base64.b64decode(<span class="string">'SGc0bTNfMm8yMF9XZWVLMg=='</span>), AES.MODE_ECB)</span><br><span class="line">a1 = base64.b64decode(<span class="string">'mjdRqH4d1O8nbUYJk+wVu3AeE7ZtE9rtT/8BA8J897I='</span>)</span><br><span class="line">a2 = <span class="string">'MFB1T2g5SWxYMDU0SWN0cw=='</span></span><br><span class="line">a3 = <span class="string">'dJntSWSPWbWocAq4yjBP5Q=='</span><span class="comment">#密文分组2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xor</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">    <span class="comment">#assert len(s1)==len(s2)</span></span><br><span class="line">    <span class="keyword">return</span> bytes( map( (<span class="keyword">lambda</span> x: x[<span class="number">0</span>]^x[<span class="number">1</span>]), zip(s1, s2) ) )</span><br><span class="line"></span><br><span class="line">s1 = a1[:<span class="number">16</span>]</span><br><span class="line">s2 = a1[<span class="number">16</span>:]</span><br><span class="line">s2 = t.decrypt(s2)</span><br><span class="line">s1 = t.decrypt(s1)</span><br><span class="line"></span><br><span class="line">s3 = <span class="string">b'Same_ciphertext_'</span></span><br><span class="line">text1 = base64.b64encode(xor(s1, s3)).decode()</span><br><span class="line"></span><br><span class="line">s4 = r.encrypt(s3)<span class="comment">#密文分组1</span></span><br><span class="line">s5 = t.decrypt(base64.b64decode(a3))</span><br><span class="line">text2 = xor(s5, s4).decode()</span><br><span class="line"></span><br><span class="line">print(<span class="string">'hgame&#123;'</span> + text1+text2 + <span class="string">'&#125;'</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hgame{L1R5WFl6UG5ZOyQpXHdlXw==DiFfer3Nt_w0r1d}</p>
+</blockquote>
+<h2 id="babyPy"><a href="#babyPy" class="headerlink" title="babyPy"></a>babyPy</h2><p>python字节码<br>翻译过来大概长这样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dis</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(flag)</span>:</span></span><br><span class="line">    O0O = flag[::<span class="number">-1</span>]</span><br><span class="line">    O0o = list(O0O)</span><br><span class="line">    <span class="keyword">for</span> O0 <span class="keyword">in</span> range(<span class="number">1</span>, len(O0o)):</span><br><span class="line">        Oo = O0o[O0 - <span class="number">1</span>] ^ O0o[O0]</span><br><span class="line">        O0o[O0] = Oo</span><br><span class="line">    O = bytes(O0o)</span><br><span class="line">    O.hex()</span><br><span class="line">dis.dis(foo)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'7d037d045717722d62114e6a5b044f2c184c3f44214c2d4a22'</span></span><br><span class="line">s = [<span class="number">0x7d</span>, <span class="number">0x03</span>, <span class="number">0x7d</span>, <span class="number">0x04</span>, <span class="number">0x57</span>, <span class="number">0x17</span>, <span class="number">0x72</span>, <span class="number">0x2d</span>, <span class="number">0x62</span>, <span class="number">0x11</span>, <span class="number">0x4e</span>]</span><br><span class="line">s += [<span class="number">0x6a</span>, <span class="number">0x5b</span>, <span class="number">0x04</span>, <span class="number">0x4f</span>, <span class="number">0x2c</span>, <span class="number">0x18</span>, <span class="number">0x4c</span>, <span class="number">0x3f</span>, <span class="number">0x44</span>, <span class="number">0x21</span>, <span class="number">0x4c</span>]</span><br><span class="line">s += [<span class="number">0x2d</span>, <span class="number">0x4a</span>, <span class="number">0x22</span>]</span><br><span class="line">b = <span class="string">'&#125;'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s)):</span><br><span class="line">    a = s[i - <span class="number">1</span>] ^ s[i]</span><br><span class="line">    b += chr(a)</span><br><span class="line"></span><br><span class="line">print(b[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hgame{sT4cK_1$_sO_e@Sy~~}</p>
+</blockquote>
+<h2 id="unpack"><a href="#unpack" class="headerlink" title="unpack"></a>unpack</h2><p>按照群里的资料脱壳<br>再用ida打开</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = [<span class="number">0x68</span> ,<span class="number">0x68</span>, <span class="number">0x63</span>, <span class="number">0x70</span>, <span class="number">0x69</span>, <span class="number">0x80</span>, <span class="number">0x5b</span>, <span class="number">0x75</span>, <span class="number">0x78</span>, <span class="number">0x49</span>, <span class="number">0x6d</span>]</span><br><span class="line">s += [<span class="number">0x76</span>, <span class="number">0x75</span>, <span class="number">0x7b</span>, <span class="number">0x75</span>, <span class="number">0x6e</span>, <span class="number">0x41</span>, <span class="number">0x84</span>, <span class="number">0x71</span>, <span class="number">0x65</span>, <span class="number">0x44</span>]</span><br><span class="line">s += [<span class="number">0x82</span>, <span class="number">0x4a</span>, <span class="number">0x85</span>, <span class="number">0x8c</span>, <span class="number">0x82</span>, <span class="number">0x7d</span>, <span class="number">0x7a</span>, <span class="number">0x82</span>, <span class="number">0x4d</span>, <span class="number">0x90</span>]</span><br><span class="line">s += [<span class="number">0x7e</span>, <span class="number">0x92</span>, <span class="number">0x54</span>, <span class="number">0x98</span>, <span class="number">0x88</span>, <span class="number">0x96</span>, <span class="number">0x98</span>, <span class="number">0x57</span>, <span class="number">0x95</span>, <span class="number">0x8f</span>, <span class="number">0xa6</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">42</span>):</span><br><span class="line">    print(chr(s[i] - i), end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hgame{Unp@cking_1s_R0m4ntic_f0r_r3vers1ng}</p>
+</blockquote>
+<h1 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h1><h2 id="Remainder"><a href="#Remainder" class="headerlink" title="Remainder"></a>Remainder</h2><p>中国剩余定理在rsa方面的应用 (啥也不懂，套公式公式就完事儿了)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">x = <span class="number">78430786011650521224561924814843614294806974988599591058915520397518526296422791089692107488534157589856611229978068659970976374971658909987299759719533519358232180721480719635602515525942678988896727128884803638257227848176298172896155463813264206982505797613067215182849559356336015634543181806296355552543</span></span><br><span class="line">y = <span class="number">49576356423474222188205187306884167620746479677590121213791093908977295803476203510001060180959190917276817541142411523867555147201992480220531431019627681572335103200586388519695931348304970651875582413052411224818844160945410884130575771617919149619341762325633301313732947264125576866033934018462843559419</span></span><br><span class="line">z = <span class="number">48131077962649497833189292637861442767562147447040134411078884485513840553188185954383330236190253388937785530658279768620213062244053151614962893628946343595642513870766877810534480536737200302699539396810545420021054225204683428522820350356470883574463849146422150244304147618195613796399010492125383322922</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">p = <span class="number">94598296305713376652540411631949434301396235111673372738276754654188267010805522542068004453137678598891335408170277601381944584279339362056579262308427544671688614923839794522671378559276784734758727213070403838632286280473450086762286706863922968723202830398266220533885129175502142533600559292388005914561</span></span><br><span class="line">q = <span class="number">150088216417404963893679242888992998793257903343994792697939121738029477790454833496600101388493792476973514786401036309378542808470513073408894727406158296404360452232777491992630316999043165374635001806841520490997788796152678742544032835808854339130676283497122770901196468323977265095016407164510827505883</span></span><br><span class="line">r = <span class="number">145897736096689096151704740327665176308625097484116713780050311198775607465862066406830851710261868913835866335107146242979359964945125214420821146670919741118254402096944139483988745450480989706524191669371208210272907563936516990473246615375022630708213486725809819360033470468293100926616729742277729705727</span></span><br><span class="line"></span><br><span class="line">M = p*q*r</span><br><span class="line">Mp = q*r</span><br><span class="line">Mq = p*r</span><br><span class="line">Mr = p*q</span><br><span class="line">tp = gmpy2.invert(Mp, p)</span><br><span class="line">tq = gmpy2.invert(Mq, q)</span><br><span class="line">tr = gmpy2.invert(Mr, r)</span><br><span class="line">c = x*tp*Mp + y*tq*Mq + z*tr*Mr <span class="comment">#c=pow(m,e,M)</span></span><br><span class="line"></span><br><span class="line">phin = (p<span class="number">-1</span>)*(q<span class="number">-1</span>)*(r<span class="number">-1</span>)</span><br><span class="line">d = gmpy2.invert(e, phin)</span><br><span class="line">print(number.long_to_bytes(pow(c,d,M)).decode())</span><br></pre></td></tr></table></figure>
+
+<p>运行结果为</p>
+<blockquote>
+<p>1hAyuFoOUCamGW9BP7pGKCG81iSEnwAOM8x<br><strong><strong>**</strong></strong> DO NOT GUESS ME <strong>****</strong><br>hg In number theory,<br>am the Chinese<br>e{ remainder theorem<br>Cr states that if one<br>T_  knows the<br>w0 remainders of the<br>Nt Euclidean division<br>+6  of an integer n<br>Ot by several<br>h3 integers, then<br>R_ YOU CAN FIND THE<br>mE FLAG, ;D<br>!!<br>!}<br><strong><strong>**</strong></strong> USE YOUR BRAIN <strong>*****</strong><br>cbl8KukOPUvpoe1LCpBchXHJTgmDknbFE2z</p>
+</blockquote>
+<blockquote>
+<p>hgame{CrT_w0Nt+6Oth3R_mE!!!}</p>
+</blockquote>
+<h2 id="Verification-code"><a href="#Verification-code" class="headerlink" title="Verification_code"></a>Verification_code</h2><p>sha256<br>签到题，暴力穷举即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, sys, signal</span><br><span class="line"><span class="keyword">import</span> string, random</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"></span><br><span class="line">a = <span class="string">'H3VPl1mQutHB3NZG'</span></span><br><span class="line">res = <span class="string">'e9872a762c9c35c32efc4a1bc935fa8cd0e48e7b70ca27ea50392a546e892f59'</span></span><br><span class="line">s = string.ascii_letters + string.digits</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> s:</span><br><span class="line">                cmp = i + j + k + l + a</span><br><span class="line">                <span class="keyword">if</span> sha256(cmp.encode()).hexdigest() == res:</span><br><span class="line">                    print(cmp)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-1.png" alt=""></p>
+<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="所见即为假"><a href="#所见即为假" class="headerlink" title="所见即为假"></a>所见即为假</h2><p>下载得到一个压缩文件，双击就解压了（mac上直接就解压了，后来在Windows上打开发现需要密码，是伪加密），解压后是一张图片，名字是flag in picture<br>用010editor打开压缩包<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-2.png" alt=""><br>发现这么一串东西</p>
+<p>百度一通，发现有个叫f5隐写的东西<br>下载使用工具<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-3.png" alt=""></p>
+<p><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-4.png" alt=""><br>得到一串字符，看起来像是16进制<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-5.png" alt=""></p>
+<h2 id="地球上最后的夜晚"><a href="#地球上最后的夜晚" class="headerlink" title="地球上最后的夜晚"></a>地球上最后的夜晚</h2><p>打开压缩包，里面是一个加密的压缩包和一个pdf，pdf名字是no password<br>这里是pdf隐写，用wbs43open提取内容，no password的意思是提取的时候不用密码<br>得到压缩文件的密码<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-6.png" alt=""><br>解压后是一个word<br>这里可以改成zip格式，打开看到很多文件，在其中一个文件里找到flag<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week2-7.png" alt=""></p>
+<h2 id="Cosmos的午餐"><a href="#Cosmos的午餐" class="headerlink" title="Cosmos的午餐"></a>Cosmos的午餐</h2><p>又是wireshark，这次又多了个log文件<br>打开发现都是tcp，只有一个http并且里面只能看到一个crt文件<br>百度一番发现要导入log文件<br>多出了很多http，导出<br>找到那个最大的文件，改格式解压，根据题目提示找到详细信息</p>
+<blockquote>
+<p>Key: gUNrbbdR9XhRBDGpzz</p>
+</blockquote>
+<p>然后看到图片名字，使用outguess解密得到一个网址<br>打开后下载了一个文件，是个二维码，扫码即得flag</p>
+<blockquote>
+<p>hgame{ls#z^$7j%yL9wmObZ#MKZKM7!nGnDvTC}</p>
+</blockquote>
+<h2 id="玩玩条码"><a href="#玩玩条码" class="headerlink" title="玩玩条码"></a>玩玩条码</h2><p>视频隐写，用MSU StegoVideo提取到7z密码<br>打开是一个条形码，扫码得flag</p>
+<blockquote>
+<p>hgame{9h7epp1fIwIL3fOtsOAenDiPDzp7aH!7}</p>
+</blockquote>
+<ul>
+<li>那么那个JPNPostCode是干嘛的？？？</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hgame/" rel="tag"># hgame</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/15/hgame2020-week1-wp/" rel="next" title="hgame2020 week1 wp">
+                <i class="fa fa-chevron-left"></i> hgame2020 week1 wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/15/hgame2020-week3-wp/" rel="prev" title="hgame2020 week3 wp">
+                hgame2020 week3 wp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">R3n0</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web"><span class="nav-number">1.</span> <span class="nav-text">web</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn"><span class="nav-number">2.</span> <span class="nav-text">pwn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#re"><span class="nav-number">3.</span> <span class="nav-text">re</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#babypyc"><span class="nav-number">3.1.</span> <span class="nav-text">babypyc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crackme"><span class="nav-number">3.2.</span> <span class="nav-text">crackme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyPy"><span class="nav-number">3.3.</span> <span class="nav-text">babyPy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unpack"><span class="nav-number">3.4.</span> <span class="nav-text">unpack</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crypto"><span class="nav-number">4.</span> <span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Remainder"><span class="nav-number">4.1.</span> <span class="nav-text">Remainder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Verification-code"><span class="nav-number">4.2.</span> <span class="nav-text">Verification_code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-number">5.</span> <span class="nav-text">misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#所见即为假"><span class="nav-number">5.1.</span> <span class="nav-text">所见即为假</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#地球上最后的夜晚"><span class="nav-number">5.2.</span> <span class="nav-text">地球上最后的夜晚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cosmos的午餐"><span class="nav-number">5.3.</span> <span class="nav-text">Cosmos的午餐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#玩玩条码"><span class="nav-number">5.4.</span> <span class="nav-text">玩玩条码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">R3n0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+<div class="BbeiAn-info">
+   	浙ICP备 -
+    <a target="_blank" href="http://www.miitbeian.gov.cn/" style="color:#f0d784"  rel="nofollow">20008512号</a> <!--a标签中增加nofollow属性，避免爬虫出站。-->| 
+	<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011102000254" style="color:#f0d784;text-decoration:none;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow">浙公网安备 33011102000254号</a>	  <!--这里将图标作为了背景，以使得能和后面的文字在同一行-->
+</div>
+<div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("07/14/2020 15:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="小破站已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
