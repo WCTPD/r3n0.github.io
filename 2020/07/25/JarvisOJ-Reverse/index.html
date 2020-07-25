@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hgame," />
+  <meta name="keywords" content="JarvisOJ," />
 
 
 
@@ -79,27 +79,22 @@
 
 
 
-<meta name="description" content="REeasyVM调试的时候发现是将输入经过变换后和一串字符进行比较，并且后面的输入不会影响前面的结果，于是就。。。。根据flag的格式套路把flag凑出来了………….. Secretida打开找到main函数发现使用了soket，用nc连接 是一串乱码用python算了一下这串乱码的长度，是0x1E6，正好和read函数读取的长度一样然后看了下这个文件的hex，在401bfc的位置发现了一串0长度">
+<meta name="description" content="Smalismali语法学习 将smali翻译成Java 12345678910111213141516171819202122232425262728293031323334353637383940414243444546import java.util.Base64;import javax.crypto.Cipher;import javax.crypto.spec.SecretKeySpe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hgame2020 week4 wp">
-<meta property="og:url" content="https://r3n0.top/2020/07/15/hgame2020-week4-wp/index.html">
+<meta property="og:title" content="JarvisOJ Reverse">
+<meta property="og:url" content="https://r3n0.top/2020/07/25/JarvisOJ-Reverse/index.html">
 <meta property="og:site_name" content="R3n0&#39;Blog">
-<meta property="og:description" content="REeasyVM调试的时候发现是将输入经过变换后和一串字符进行比较，并且后面的输入不会影响前面的结果，于是就。。。。根据flag的格式套路把flag凑出来了………….. Secretida打开找到main函数发现使用了soket，用nc连接 是一串乱码用python算了一下这串乱码的长度，是0x1E6，正好和read函数读取的长度一样然后看了下这个文件的hex，在401bfc的位置发现了一串0长度">
+<meta property="og:description" content="Smalismali语法学习 将smali翻译成Java 12345678910111213141516171819202122232425262728293031323334353637383940414243444546import java.util.Base64;import javax.crypto.Cipher;import javax.crypto.spec.SecretKeySpe">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-1.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-2.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-3.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-4.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-5.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-6.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-7.png">
-<meta property="og:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-8.png">
-<meta property="article:published_time" content="2020-07-15T02:37:04.000Z">
-<meta property="article:modified_time" content="2020-07-15T03:13:38.517Z">
+<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis-2.png">
+<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis1.png">
+<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis-4.png">
+<meta property="article:published_time" content="2020-07-25T05:32:56.000Z">
+<meta property="article:modified_time" content="2020-07-25T05:34:37.996Z">
 <meta property="article:author" content="R3n0">
-<meta property="article:tag" content="hgame">
+<meta property="article:tag" content="JarvisOJ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://r3n0.top/wp-content/uploads/2020/04/week4-1.png">
+<meta name="twitter:image" content="http://img.gaochenyang.com/uPic/Jarvis-2.png">
 
 
 
@@ -129,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://r3n0.top/2020/07/15/hgame2020-week4-wp/"/>
+  <link rel="canonical" href="https://r3n0.top/2020/07/25/JarvisOJ-Reverse/"/>
 
 
 
 
 
-  <title>hgame2020 week4 wp | R3n0'Blog</title>
+  <title>JarvisOJ Reverse | R3n0'Blog</title>
   
 
 
@@ -272,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://r3n0.top/2020/07/15/hgame2020-week4-wp/">
+    <link itemprop="mainEntityOfPage" href="https://r3n0.top/2020/07/25/JarvisOJ-Reverse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="R3n0">
@@ -289,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hgame2020 week4 wp</h1>
+          <h1 class="post-title" itemprop="name headline">JarvisOJ Reverse</h1>
         
 
         <div class="post-meta">
@@ -301,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-15T10:37:04+08:00">
-                2020-07-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-25T13:32:56+08:00">
+                2020-07-25
               </time>
             
 
@@ -312,6 +307,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index">
+                    <span itemprop="name">Reverse</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -320,8 +337,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/15/hgame2020-week4-wp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/15/hgame2020-week4-wp/" itemprop="commentCount"></span>
+                <a href="/2020/07/25/JarvisOJ-Reverse/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/25/JarvisOJ-Reverse/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -349,15 +366,24 @@
       
 
       
-        <h1 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h2 id="easyVM"><a href="#easyVM" class="headerlink" title="easyVM"></a>easyVM</h2><p>调试的时候发现是将输入经过变换后和一串字符进行比较，并且后面的输入不会影响前面的结果，于是就。。。。<br>根据flag的格式套路把flag凑出来了<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-1.png" alt=""><br>…………..</p>
-<h2 id="Secret"><a href="#Secret" class="headerlink" title="Secret"></a>Secret</h2><p>ida打开找到main函数<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-2.png" alt=""><br>发现使用了soket，用nc连接<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-3.png" alt=""></p>
-<p>是一串乱码<br>用python算了一下这串乱码的长度，是0x1E6，正好和read函数读取的长度一样<br>然后看了下这个文件的hex，在401bfc的位置发现了一串0<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-4.png" alt=""><br>长度是0x1E6<br>程序原本是不完整的，要通过soket读取一串字符后把它写到相应的地方，再把这块内存修改为7<br>填上这块0之后发现最后一句变成了这样<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-5.png" alt=""><br>进去之后<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-6.png" alt=""><br>看到了一串不认识的函数<br>经百度后发现这是用来发送信号的，又再函数列表里找到了接受信号的函数<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-7.png" alt=""><br>整了很久才高明白程序的流程（诡异的程序调试的时候信号乱发rip乱跳）<br>大致就是执行到main的时候fork处一个子进程，主进程进入死循环，子进程进行执行,<br>等子进程执行到401BFC的时候就会按照流程向主进程发送信号，主进程接受信号就会执行相应的函数<br>所以根据信号流程，这个加密算法应该是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">unsigned int arry[4] &#x3D; &#123;0x42655f29, 0x9e822efc, 0x0da278c92, 0x4e355a62&#125;;</span><br><span class="line">unsigned b &#x3D; 0x9e3779b9;</span><br><span class="line">int count &#x3D; 0;</span><br><span class="line">unsigned int c[14];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    unsigned int c1, c2;</span><br><span class="line">    int count1 &#x3D; 0, v3 &#x3D; 0;</span><br><span class="line">    char ch[100] &#x3D; &quot;hgame&#123;No11112121212121212121212121212121212121212121212&quot;;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 7; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        count1 &#x3D; 0;</span><br><span class="line">        v3 &#x3D; count++;</span><br><span class="line">        c1 &#x3D; *(unsigned int *)(ch + 4 * v3);</span><br><span class="line">        v3 &#x3D; count++;</span><br><span class="line">        c2 &#x3D; *(unsigned int *)(ch + 4 * v3);</span><br><span class="line">        for (int j &#x3D; 0; j &lt; 32; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            c1 +&#x3D; (arry[count1 &amp; 3] + count1) ^ (((c2 &gt;&gt; 5) ^ 16 * c2) + c2);</span><br><span class="line">            count1 +&#x3D; b;</span><br><span class="line">            c2 +&#x3D; (arry[(count1 &gt;&gt; 11) &amp; 3] + count1) ^ (((c1 &gt;&gt; 5) ^ 16 * c1) + c1); </span><br><span class="line">        &#125;</span><br><span class="line">        c[count - 2] &#x3D; c1;</span><br><span class="line">        c[count - 1] &#x3D; c2;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 14; i++)</span><br><span class="line">        printf(&quot;%X &quot;, c[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="Smali"><a href="#Smali" class="headerlink" title="Smali"></a>Smali</h1><p><a href="https://wiki.x10sec.org/android/basic_operating_mechanism/java_layer/smali/smali/" target="_blank" rel="noopener">smali语法学习</a></p>
+<p>将smali翻译成Java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.spec.SecretKeySpec;</span><br><span class="line"><span class="keyword">import</span> javax.naming.spi.DirStateFactory.Result;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Crackme</span> <span class="keyword">extends</span> <span class="title">Object</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String str2;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Crackme</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        String v0 = <span class="string">"cGhyYWNrICBjdGYgMjAxNg=="</span>;</span><br><span class="line">        <span class="keyword">this</span>.str2 = v0;</span><br><span class="line">        v0 = <span class="string">"sSNnx1UKbYrA1+MOrdtDTA=="</span>;</span><br><span class="line">        <span class="keyword">this</span>.GetFlag(v0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">GetFlag</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> v3 = <span class="number">0</span>; <span class="comment">//Base64.DEFAULT</span></span><br><span class="line">        <span class="keyword">byte</span>[] v2 = str.getBytes();</span><br><span class="line">        <span class="keyword">byte</span>[] content = Base64.decode(v2, v3); <span class="comment">//v0</span></span><br><span class="line">        v2 = <span class="keyword">this</span>.str2.getBytes();</span><br><span class="line">        v2 = Base64.decode(v2, v3);</span><br><span class="line">        kk = <span class="keyword">new</span> String(v2); <span class="comment">//v1</span></span><br><span class="line">        String v3_0 = <span class="keyword">this</span>.decrypt(content, kk);</span><br><span class="line">      	System.out.println(v3_0)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">decrypt</span><span class="params">(<span class="keyword">byte</span>[] content, String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = <span class="number">0</span>; <span class="comment">//v4</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String keyStr = password.getBytes(); <span class="comment">//v3</span></span><br><span class="line">            <span class="comment">//String v7 = "AES";</span></span><br><span class="line">            SecretKeySpec key = <span class="keyword">new</span> SecretKeySpec(keyStr, <span class="string">"AES"</span>); <span class="comment">//v2</span></span><br><span class="line">            <span class="comment">//v7 = AES/ECB/NoPadding</span></span><br><span class="line">            Cipher cipher = Cipher.getInstance(<span class="string">"NoPadding"</span>); <span class="comment">//v0</span></span><br><span class="line">            <span class="keyword">int</span> v7 = <span class="number">2</span>;</span><br><span class="line">            cipher.init(v7, key);</span><br><span class="line">            <span class="keyword">byte</span>[] result = cipher.doFinal(content);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String(result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">            <span class="comment">//.......</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>经过查找发现这是xtea加密<br>解密如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    unsigned int array[4] &#x3D; &#123;0x42655f29, 0x9e822efc, 0x0da278c92, 0x4e355a62&#125;;</span><br><span class="line">    unsigned d &#x3D; 0x9e3779b9;</span><br><span class="line">    unsigned int cipher[14] &#x3D; &#123;0x27A9C8E9, 0x0BAA973B4, 0x0AAC072F9, 0x0A3FA8000, 0x0D9F4C2D3, 0x0FB3F6BC5, 0x0D3D3D95E,</span><br><span class="line">                               0x86961D77, 0x0E600C53F, 0x98BC27B9, 0x9AAC3AC, 0x6ADC2424, 0x605E304, 0x65E78C77&#125;;</span><br><span class="line">    </span><br><span class="line">    for (int j &#x3D; 0; j &lt; 14; j+&#x3D;2)</span><br><span class="line">    &#123;</span><br><span class="line">        int count1 &#x3D; d &lt;&lt; 5;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; 32; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cipher[j+1] -&#x3D; (array[(count1 &gt;&gt; 11) &amp; 3] + count1) ^ (((cipher[j] &gt;&gt; 5) ^ 16 * cipher[j]) + cipher[j]);</span><br><span class="line">            count1 -&#x3D; d;</span><br><span class="line">            cipher[j] -&#x3D; (array[count1 &amp; 3] + count1) ^ (((cipher[j+1] &gt;&gt; 5) ^ 16 * cipher[j+1]) + cipher[j+1]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 14; i++)</span><br><span class="line">        printf(&quot;%X &quot;, cipher[i]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有些地方类型不对，能看大致逻辑就行</p>
+<blockquote>
+<p>PCTF{Sm4liRiver}</p>
+</blockquote>
+<h1 id="CrackMe2"><a href="#CrackMe2" class="headerlink" title="CrackMe2"></a>CrackMe2</h1><p>.Net逆向</p>
+<p><img src="http://img.gaochenyang.com/uPic/Jarvis-2.png" alt=""></p>
+<p>这题有混淆，可以用de4dot还原符号</p>
+<p><img src="http://img.gaochenyang.com/uPic/Jarvis1.png" alt=""></p>
+<p>这里是程序的主逻辑</p>
+<p><img src="http://img.gaochenyang.com/uPic/Jarvis-4.png" alt=""></p>
+<p>可以看到用了AES加密</p>
+<p>用dnspy直接动调可以得到bytes和text2要比较的值,然后解密就行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/python3</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">_bytes = [<span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>, <span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0x36</span>, <span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>]</span><br><span class="line">_bytes += [<span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0x36</span>, <span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>, <span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>]</span><br><span class="line">_bytes += [<span class="number">0x31</span>, <span class="number">0x36</span>, <span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>, <span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0x36</span>]</span><br><span class="line">_bytes = <span class="string">''</span>.join([chr(_) <span class="keyword">for</span> _ <span class="keyword">in</span> _bytes]).encode()</span><br><span class="line">text2 = base64.b64decode(<span class="string">b"x/nzolo0TTIyrEISd4AP1spCzlhSWJXeNbY81SjPgmk="</span>)</span><br><span class="line">key = _bytes</span><br><span class="line">cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line"></span><br><span class="line">print(cipher.decrypt(text2).decode())</span><br></pre></td></tr></table></figure>
 
-<p>得到一串16进制<br><img src="https://r3n0.top/wp-content/uploads/2020/04/week4-8.png" alt=""><br>再把每一串16进制倒过来转成字符串就是flag了</p>
 
       
     </div>
@@ -378,7 +404,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://r3n0.top/2020/07/15/hgame2020-week4-wp/" title="hgame2020 week4 wp">https://r3n0.top/2020/07/15/hgame2020-week4-wp/</a>
+    <a href="https://r3n0.top/2020/07/25/JarvisOJ-Reverse/" title="JarvisOJ Reverse">https://r3n0.top/2020/07/25/JarvisOJ-Reverse/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -393,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hgame/" rel="tag"># hgame</a>
+            <a href="/tags/JarvisOJ/" rel="tag"># JarvisOJ</a>
           
         </div>
       
@@ -406,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/15/hgame2020-week3-wp/" rel="next" title="hgame2020 week3 wp">
-                <i class="fa fa-chevron-left"></i> hgame2020 week3 wp
+              <a href="/2020/07/15/buuctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" rel="next" title="buuctf刷题记录">
+                <i class="fa fa-chevron-left"></i> buuctf刷题记录
               </a>
             
           </div>
@@ -415,10 +441,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/15/%E7%AC%AC%E4%B8%80%E4%B8%AAwindows%E9%A9%B1%E5%8A%A8/" rel="prev" title="第一个windows驱动">
-                第一个windows驱动 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -552,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RE"><span class="nav-number">1.</span> <span class="nav-text">RE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#easyVM"><span class="nav-number">1.1.</span> <span class="nav-text">easyVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Secret"><span class="nav-number">1.2.</span> <span class="nav-text">Secret</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Smali"><span class="nav-number">1.</span> <span class="nav-text">Smali</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CrackMe2"><span class="nav-number">2.</span> <span class="nav-text">CrackMe2</span></a></li></ol></div>
             
 
           </div>
