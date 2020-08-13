@@ -98,10 +98,11 @@
 <meta property="og:image" content="http://img.gaochenyang.com/8Dxdqv.png">
 <meta property="og:image" content="http://img.gaochenyang.com/I9qhzL.png">
 <meta property="og:image" content="http://img.gaochenyang.com/FcNZaI.png">
+<meta property="og:image" content="http://img.gaochenyang.com/wsSG7x.png">
 <meta property="og:image" content="http://img.gaochenyang.com/97HOHT.png">
 <meta property="og:image" content="http://img.gaochenyang.com/9GrgBU.png">
 <meta property="article:published_time" content="2020-07-25T05:32:56.000Z">
-<meta property="article:modified_time" content="2020-07-29T12:09:21.849Z">
+<meta property="article:modified_time" content="2020-08-13T02:49:49.949Z">
 <meta property="article:author" content="R3n0">
 <meta property="article:tag" content="JarvisOJ">
 <meta name="twitter:card" content="summary">
@@ -429,7 +430,7 @@
 <h1 id="软件密码破解3"><a href="#软件密码破解3" class="headerlink" title="软件密码破解3"></a>软件密码破解3</h1><p>MFC逆向</p>
 <p><img src="http://img.gaochenyang.com/FcNZaI.png" alt=""></p>
 <p>首先要找到处理输入的的地方(这个地方找了很久)，最后在找API函数下断点的时候看到了这个</p>
-<p>![](/Users/r3n0/Library/Application Support/typora-user-images/image-20200729160410709.png)</p>
+<p><img src="http://img.gaochenyang.com/wsSG7x.png" alt="wsSG7x"></p>
 <p>挺像加密后的flag,通过交叉引用来到了这里,跑到函数开头下断点</p>
 <p><img src="http://img.gaochenyang.com/97HOHT.png" alt=""></p>
 <p>猜测程序的流程是输入密码，输入到一定长度后判断是否正确，如果正确<del>就弹出flag</del>弹的是flag就是你的口令</p>
