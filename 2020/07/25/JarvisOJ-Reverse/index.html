@@ -86,27 +86,27 @@
 <meta property="og:site_name" content="R3n0&#39;Blog">
 <meta property="og:description" content="Smalismali语法学习 将smali翻译成Java 12345678910111213141516171819202122232425262728293031323334353637383940414243444546import java.util.Base64;import javax.crypto.Cipher;import javax.crypto.spec.SecretKeySpe">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis-2.png">
-<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis1.png">
-<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis-4.png">
-<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis-5.png">
-<meta property="og:image" content="http://img.gaochenyang.com/uPic/Jarvis-6.png">
-<meta property="og:image" content="http://img.gaochenyang.com/rR6Yuo.png">
-<meta property="og:image" content="http://img.gaochenyang.com/9ptaLu.png">
-<meta property="og:image" content="http://img.gaochenyang.com/Ywm34l.png">
-<meta property="og:image" content="http://img.gaochenyang.com/AnkcoS.png">
-<meta property="og:image" content="http://img.gaochenyang.com/8Dxdqv.png">
-<meta property="og:image" content="http://img.gaochenyang.com/I9qhzL.png">
-<meta property="og:image" content="http://img.gaochenyang.com/FcNZaI.png">
-<meta property="og:image" content="http://img.gaochenyang.com/wsSG7x.png">
-<meta property="og:image" content="http://img.gaochenyang.com/97HOHT.png">
-<meta property="og:image" content="http://img.gaochenyang.com/9GrgBU.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101/uPic/Jarvis-2.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101/Jarvis1.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101/Jarvis-4.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101/Jarvis-5.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101/Jarvis-6.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//rR6Yuo.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//9ptaLu.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//Ywm34l.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//AnkcoS.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//8Dxdqv.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//I9qhzL.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//FcNZaI.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//wsSG7x.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//97HOHT.png">
+<meta property="og:image" content="https://gaochenyang.com/blog/202101//9GrgBU.png">
 <meta property="article:published_time" content="2020-07-25T05:32:56.000Z">
-<meta property="article:modified_time" content="2020-08-13T02:49:49.949Z">
+<meta property="article:modified_time" content="2021-01-05T14:28:55.424Z">
 <meta property="article:author" content="R3n0">
 <meta property="article:tag" content="JarvisOJ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://img.gaochenyang.com/uPic/Jarvis-2.png">
+<meta name="twitter:image" content="https://gaochenyang.com/blog/202101/uPic/Jarvis-2.png">
 
 
 
@@ -387,11 +387,11 @@
 <p>PCTF{Sm4liRiver}</p>
 </blockquote>
 <h1 id="CrackMe2"><a href="#CrackMe2" class="headerlink" title="CrackMe2"></a>CrackMe2</h1><p>.Net逆向</p>
-<p><img src="http://img.gaochenyang.com/uPic/Jarvis-2.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101/uPic/Jarvis-2.png" alt=""></p>
 <p>这题有混淆，可以用de4dot还原符号</p>
-<p><img src="http://img.gaochenyang.com/uPic/Jarvis1.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101/Jarvis1.png" alt=""></p>
 <p>这里是程序的主逻辑</p>
-<p><img src="http://img.gaochenyang.com/uPic/Jarvis-4.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101/Jarvis-4.png" alt=""></p>
 <p>可以看到用了AES加密</p>
 <p>用dnspy直接动调可以得到bytes和text2要比较的值,然后解密就行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/python3</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">_bytes = [<span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>, <span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0x36</span>, <span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>]</span><br><span class="line">_bytes += [<span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0x36</span>, <span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>, <span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>]</span><br><span class="line">_bytes += [<span class="number">0x31</span>, <span class="number">0x36</span>, <span class="number">0x70</span>, <span class="number">0x63</span>, <span class="number">0x74</span>, <span class="number">0x66</span>, <span class="number">0x32</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0x36</span>]</span><br><span class="line">_bytes = <span class="string">''</span>.join([chr(_) <span class="keyword">for</span> _ <span class="keyword">in</span> _bytes]).encode()</span><br><span class="line">text2 = base64.b64decode(<span class="string">b"x/nzolo0TTIyrEISd4AP1spCzlhSWJXeNbY81SjPgmk="</span>)</span><br><span class="line">key = _bytes</span><br><span class="line">cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line"></span><br><span class="line">print(cipher.decrypt(text2).decode())</span><br></pre></td></tr></table></figure>
@@ -399,44 +399,44 @@
 <h1 id="Fibonacci"><a href="#Fibonacci" class="headerlink" title="Fibonacci"></a>Fibonacci</h1><p>用jar2exe打包成exe，<del>但不知道为什么没法运行，找不到jre。</del></p>
 <p>我windows虚拟机上的jre是32位的，得装64位</p>
 <p>成功运行后</p>
-<p><img src="http://img.gaochenyang.com/uPic/Jarvis-5.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101/Jarvis-5.png" alt=""></p>
 <p><a href="https://blog.csdn.net/qq_35078631/article/details/79050341" target="_blank" rel="noopener">jar2exe提取源码</a>(这个方法只能提取加载过的类，所以提取的jar不完整)</p>
 <p>提取完整的jar可以用OD <a href="https://www.wtfplus.com/357.html" target="_blank" rel="noopener">方法</a></p>
 <p>先找到RCDATA的偏移</p>
-<p><img src="http://img.gaochenyang.com/uPic/Jarvis-6.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101/Jarvis-6.png" alt=""></p>
 <p>RVA是77398，内存基址是400000</p>
 <p>在这个地方下硬件断点后等程序断下，然后在最外层循环处下断</p>
-<p><img src="http://img.gaochenyang.com/rR6Yuo.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//rR6Yuo.png" alt=""></p>
 <p>经过调试发现解密的jar数据存在这个位置</p>
-<p><img src="http://img.gaochenyang.com/9ptaLu.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//9ptaLu.png" alt=""></p>
 <p>然后R11存的应该是长度</p>
-<p><img src="http://img.gaochenyang.com/Ywm34l.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//Ywm34l.png" alt=""></p>
 <p>把这片数据dump下来，解压</p>
-<p><img src="http://img.gaochenyang.com/AnkcoS.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//AnkcoS.png" alt=""></p>
 <p>这就是完整的jar了，然后丢进jeb里分析就行</p>
 <p>代码没有判断的逻辑，输入什么都会提示错误，需要自己运行那段解密的代码</p>
 <blockquote>
 <p>PCTF{1ts_not_5c2ipt_Chall3nge}</p>
 </blockquote>
 <h1 id="FindPass"><a href="#FindPass" class="headerlink" title="FindPass"></a>FindPass</h1><p>判断flag的逻辑很简单</p>
-<p><img src="http://img.gaochenyang.com/8Dxdqv.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//8Dxdqv.png" alt=""></p>
 <p>用jeb调试一下，下个断点看下变量就可以得到flag了</p>
-<h1 id="DD-Hello"><a href="#DD-Hello" class="headerlink" title="DD-Hello"></a>DD-Hello</h1><p><img src="http://img.gaochenyang.com/I9qhzL.png" alt=""></p>
+<h1 id="DD-Hello"><a href="#DD-Hello" class="headerlink" title="DD-Hello"></a>DD-Hello</h1><p><img src="https://gaochenyang.com/blog/202101//I9qhzL.png" alt=""></p>
 <p>只要把<code>start</code>里面的<code>call</code>的地址改成另一个函数的地址就能直接输出flag了</p>
 <blockquote>
 <p>要CALL的地址 - 下一条指令地址 = E8 后面的硬编码</p>
 <p>E8 后面的硬编码 + 下一条指令地址 = CALL的地址</p>
 </blockquote>
 <h1 id="软件密码破解3"><a href="#软件密码破解3" class="headerlink" title="软件密码破解3"></a>软件密码破解3</h1><p>MFC逆向</p>
-<p><img src="http://img.gaochenyang.com/FcNZaI.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//FcNZaI.png" alt=""></p>
 <p>首先要找到处理输入的的地方(这个地方找了很久)，最后在找API函数下断点的时候看到了这个</p>
-<p><img src="http://img.gaochenyang.com/wsSG7x.png" alt="wsSG7x"></p>
+<p><img src="https://gaochenyang.com/blog/202101//wsSG7x.png" alt="wsSG7x"></p>
 <p>挺像加密后的flag,通过交叉引用来到了这里,跑到函数开头下断点</p>
-<p><img src="http://img.gaochenyang.com/97HOHT.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//97HOHT.png" alt=""></p>
 <p>猜测程序的流程是输入密码，输入到一定长度后判断是否正确，如果正确<del>就弹出flag</del>弹的是flag就是你的口令</p>
 <p>经过调试后发现这个函数的作用是将输入转成HEX(只能输入0123456789ABCDE)，然后判断生成的hex长度是否为8,8返回0，否则返回1.但我在后续的调试中没有发现有什么比较flag的逻辑。</p>
 <hr>
-<p><img src="http://img.gaochenyang.com/9GrgBU.png" alt=""></p>
+<p><img src="https://gaochenyang.com/blog/202101//9GrgBU.png" alt=""></p>
 <p>看了下交叉引用发现还有其他地方引用了。不过不知道为什么我当时下的硬件断点没有断下来.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">int sub_BA1970()</span><br><span class="line">&#123;</span><br><span class="line">  signed int v0; &#x2F;&#x2F; esi</span><br><span class="line">  unsigned __int8 v1; &#x2F;&#x2F; bl</span><br><span class="line">  char v2; &#x2F;&#x2F; cl</span><br><span class="line">  char v3; &#x2F;&#x2F; al</span><br><span class="line">  char v4; &#x2F;&#x2F; cl</span><br><span class="line">  char v5; &#x2F;&#x2F; al</span><br><span class="line">  unsigned __int8 v6; &#x2F;&#x2F; dl</span><br><span class="line">  unsigned __int8 v7; &#x2F;&#x2F; bl</span><br><span class="line">  char v8; &#x2F;&#x2F; cl</span><br><span class="line">  char v9; &#x2F;&#x2F; al</span><br><span class="line">  unsigned __int8 v10; &#x2F;&#x2F; dl</span><br><span class="line">  unsigned __int8 v11; &#x2F;&#x2F; bl</span><br><span class="line">  char v12; &#x2F;&#x2F; cl</span><br><span class="line">  char v13; &#x2F;&#x2F; al</span><br><span class="line">  unsigned __int8 v14; &#x2F;&#x2F; dl</span><br><span class="line">  unsigned __int8 v15; &#x2F;&#x2F; bl</span><br><span class="line">  int v16; &#x2F;&#x2F; edi</span><br><span class="line">  unsigned __int8 v17; &#x2F;&#x2F; cl</span><br><span class="line">  unsigned __int8 v18; &#x2F;&#x2F; dl</span><br><span class="line">  char v19; &#x2F;&#x2F; dl</span><br><span class="line">  int result; &#x2F;&#x2F; eax</span><br><span class="line">  char v21; &#x2F;&#x2F; cl</span><br><span class="line"></span><br><span class="line">  v0 &#x3D; 64;</span><br><span class="line">  do</span><br><span class="line">  &#123;</span><br><span class="line">    v1 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145B];</span><br><span class="line">    v2 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D11459]]];</span><br><span class="line">    v3 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D0B0D0[LOBYTE(byte_D11458[0])]]]];</span><br><span class="line">    byte_D1145A &#x3D; byte_D0B0D0[(unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D1145A]];</span><br><span class="line">    byte_D11459 &#x3D; v2;</span><br><span class="line">    v4 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145A];</span><br><span class="line">    LOBYTE(byte_D11458[0]) &#x3D; v3;</span><br><span class="line">    v5 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D11459];</span><br><span class="line">    byte_D1145B &#x3D; v1;</span><br><span class="line">    v6 &#x3D; byte_D0B0D0[v1];</span><br><span class="line">    v7 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145C];</span><br><span class="line">    byte_D1145B &#x3D; v6;</span><br><span class="line">    byte_D1145A &#x3D; v4;</span><br><span class="line">    v8 &#x3D; byte_D0B0D0[v6];</span><br><span class="line">    byte_D11459 &#x3D; v5;</span><br><span class="line">    v9 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145A];</span><br><span class="line">    byte_D1145C &#x3D; v7;</span><br><span class="line">    v10 &#x3D; byte_D0B0D0[v7];</span><br><span class="line">    v11 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145D];</span><br><span class="line">    byte_D1145C &#x3D; v10;</span><br><span class="line">    byte_D1145B &#x3D; v8;</span><br><span class="line">    v12 &#x3D; byte_D0B0D0[v10];</span><br><span class="line">    byte_D1145A &#x3D; v9;</span><br><span class="line">    v13 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145B];</span><br><span class="line">    byte_D1145D &#x3D; v11;</span><br><span class="line">    v14 &#x3D; byte_D0B0D0[v11];</span><br><span class="line">    v15 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145E];</span><br><span class="line">    v16 &#x3D; (unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D0B0D0[(unsigned __int8)byte_D1145F]];</span><br><span class="line">    byte_D1145D &#x3D; v14;</span><br><span class="line">    byte_D1145C &#x3D; v12;</span><br><span class="line">    v17 &#x3D; byte_D0B0D0[v14];</span><br><span class="line">    byte_D1145B &#x3D; v13;</span><br><span class="line">    v18 &#x3D; byte_D0B0D0[(unsigned __int8)byte_D0B0D0[v15]];</span><br><span class="line">    byte_D1145C &#x3D; byte_D0B0D0[(unsigned __int8)byte_D1145C];</span><br><span class="line">    v19 &#x3D; byte_D0B0D0[v18];</span><br><span class="line">    byte_D1145D &#x3D; byte_D0B0D0[v17];</span><br><span class="line">    result &#x3D; (unsigned __int8)byte_D0B0D0[v16];</span><br><span class="line">    v21 &#x3D; byte_D0B0D0[result];</span><br><span class="line">    byte_D1145E &#x3D; v19;</span><br><span class="line">    byte_D1145F &#x3D; v21;</span><br><span class="line">    --v0;</span><br><span class="line">  &#125;</span><br><span class="line">  while ( v0 );</span><br><span class="line">  byte_D11460 &#x3D; 1;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
